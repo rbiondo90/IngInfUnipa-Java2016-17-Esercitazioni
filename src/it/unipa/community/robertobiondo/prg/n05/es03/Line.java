@@ -16,11 +16,20 @@ public class Line {
 
     private Point2D p1;
     private Point2D p2;
+    private boolean validity = false;
 
     public Line(Point2D p1, Point2D p2) {
-        if (Vector.linearIndependence(p1.toVector(), p2.toVector())) {
+        int originCount = 0;
+        if (p1.equals(new Point2D())) {
+            originCount++;
+        }
+        if (p2.equals(new Point2D())) {
+            originCount++;
+        }
+        if (originCount == 1 || Vector.linearIndependence(p1.toVector(), p2.toVector())) {
             this.p1 = p1;
             this.p2 = p2;
+            this.validity = true;
         }
 
     }
@@ -34,7 +43,7 @@ public class Line {
     }
 
     public boolean containsPoint(Point2D point) {
-        if (this.getP1()!= null && this.getP2()!=null) {
+        if (this.validity) {
             return this.getParameterA() * point.getX() + this.getParameterB() * point.getY() + this.getParameterC() == 0;
         } else {
             return false;
@@ -42,20 +51,20 @@ public class Line {
     }
 
     public double getParameterA() {
-        return this.getP2().getY() - this.getP1().getY();
+        return (this.validity) ? this.getP2().getY() - this.getP1().getY() : Float.NaN;
     }
 
     public double getParameterB() {
-        return this.getP1().getX() - this.getP2().getX();
+        return (this.validity) ? this.getP1().getX() - this.getP2().getX() : Float.NaN;
     }
 
     public double getParameterC() {
-        return this.getP1().getY() * this.getP2().getX() - this.getP1().getX() * this.getP2().getY();
+        return (this.validity) ? this.getP1().getY() * this.getP2().getX() - this.getP1().getX() * this.getP2().getY() : Float.NaN;
     }
 
     @Override
     public String toString() {
-        if (this.getP1() != null && this.getP2() != null) {
+        if (this.validity) {
             StringBuilder s = new StringBuilder();
             double a, b, c;
             a = this.getParameterA();
@@ -101,11 +110,8 @@ public class Line {
         System.out.println(this);
     }
 
-    public static void main(String args[]) {
-        Line l = new Line(new Point2D(4, 6), new Point2D(2, 3));
-        l.print();
-        System.out.println(l.containsPoint(new Point2D(4, 6)));
-
+    public boolean getValidity() {
+        return this.validity;
     }
 
 }
