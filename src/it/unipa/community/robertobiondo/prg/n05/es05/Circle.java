@@ -52,7 +52,7 @@ public class Circle extends Shape {
             s.append("with a radius of ").append(this.getRadius()).append("cm.");
             s.append("\nPerimeter = ").append(this.perimeter()).append("cm.");
             s.append("\nArea = ").append(this.area()).append("cm^2.");
-            return s.toString();
+            return s.toString().replace("generic shape", "circle");
         } else {
             return "Not a valid circle.";
         }
@@ -61,10 +61,4 @@ public class Circle extends Shape {
     public void print() {
         System.out.println(this);
     }
-
-    public static void main(String args[]) {
-        Circle c = new Circle(1);
-        System.out.println(c);
-    }
-
 }

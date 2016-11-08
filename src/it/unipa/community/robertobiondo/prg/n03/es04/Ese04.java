@@ -7,9 +7,9 @@ public class Ese04{
 		int k = j++; // k = 6, i = 7
 		int h = k--; //h = 6, k = 5
 		boolean flag = ((i != j) && ((j <= k) || (i <= h)));
-		//i!=j è vero perchè i = 7, j = 6
-		//j<=k è falso perchè j = 6 e k =5, però i<=h perchè i=h=6
-		// quindi l'espressione completa è vera
+		//i!=j Ã¨ vero perchÃ¨ i = 7, j = 6
+		//j<=k Ã¨ falso perchÃ¨ j = 6 e k =5, pero i<=h perchï¿½ i=h=6
+		// quindi l'espressione completa ï¿½ vera
 		System.out.println(flag);
 	}
 }

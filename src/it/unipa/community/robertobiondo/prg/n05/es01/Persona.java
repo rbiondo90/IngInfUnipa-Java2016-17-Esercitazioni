@@ -45,7 +45,7 @@ public class Persona {
     }
 
     public boolean setDataDiNascita(Date dataDiNascita) {
-        if (dataDiNascita != null && dataDiNascita.giorniDiDifferenza(Date.ottieniDataCorrente()) > 0) {
+        if (dataDiNascita != null && dataDiNascita.giorniPassati(Date.ottieniDataCorrente()) > 0) {
             this.dataDiNascita = dataDiNascita.clone();
             this.updateValiditàRecord();
             return true;
@@ -146,7 +146,7 @@ public class Persona {
     }
 
     public int getEta() {
-        return (this.validitàRecord) ? this.getDataDiNascita().anniDiDifferenza(Date.ottieniDataCorrente()) : -1;
+        return (this.validitàRecord) ? this.getDataDiNascita().anniPassati(Date.ottieniDataCorrente()) : -1;
     }
 
     private void updateValiditàRecord() {

@@ -152,7 +152,7 @@ public class Date {
     }
 
     public void stampa(String formato) {
-        System.out.println(this.toString(formato) + "\n Data valida: " + this.getValidita());
+        System.out.println(this.toString(formato));
     }
 
     public void stampa() {
@@ -189,7 +189,7 @@ public class Date {
     }
 
     private boolean validaGiornoEMese(int giorno, int mese) {
-        return (getGiorniDelMese(mese)!=0 && giorno <= getGiorniDelMese(mese));
+        return (getGiorniDelMese(mese) != 0 && giorno <= getGiorniDelMese(mese));
     }
 
     public boolean getValidita() {
@@ -231,17 +231,31 @@ public class Date {
         return Date.getNomeMese(mese);
     }
 
-    public int giorniDiDifferenza(Date d2) {
-        return ((d2.getAnno() - this.getAnno()) * 365) + Math.abs(d2.getGiornoDellAnno() - this.getGiornoDellAnno());
+    public int giorniPassati(Date d2) {
+        return ((d2.getAnno() - this.getAnno()) * 365) + (d2.getGiornoDellAnno() - this.getGiornoDellAnno());
     }
 
-    public int anniDiDifferenza(Date d2) {
-        return this.giorniDiDifferenza(d2) / 365;
+    public int anniPassati(Date d2) {
+        return this.giorniPassati(d2) / 365;
     }
 
     public static Date ottieniDataCorrente() {
         Calendar calendario = Calendar.getInstance();
         return new Date(calendario.get(Calendar.DATE), calendario.get(Calendar.MONTH) + 1, calendario.get(Calendar.YEAR));
+    }
+
+    public Date aggiungiGiorni(int giorni) {
+        int anniDaAggiungere = giorni / 365;
+        int giornoDaImpostare = this.getGiornoDellAnno() + giorni - (anniDaAggiungere * 365);
+        if (giornoDaImpostare > 365) {
+            giornoDaImpostare -= 365;
+            anniDaAggiungere++;
+        }
+        return new Date(giornoDaImpostare, this.getAnno() + anniDaAggiungere);
+    }
+    
+    public Date aggiungiAnni(int anni){
+        return new Date(this.getGiorno(),this.getMese(),this.getAnno()+anni);
     }
 
     @Override
@@ -251,18 +265,20 @@ public class Date {
     }
 
     public static void main(String args[]) {
-        Date d = new Date(12, 16, 1990);
+        Date d = new Date("12/04/2016");
         d.stampa();
         d.stampa("GGG AAAA");
         d.stampa("GG MMMM AAAA");
-        Date d2 = new Date(30, "novembre", 1966);
+        Date d2 = new Date(12, "aprile", 1990);
         d2.stampa();
         d2.stampa("GGG AAAA");
         d2.stampa("GG MMMM AAAA");
         Date d3 = new Date(365, 1986);
         d3.stampa("GG MMMM AAAA");
-        System.out.println("Tra " + d + " e " + d2 + " ci sono " + d.anniDiDifferenza(d2) + " anni di differenza.");
+        System.out.println("Tra " + d + " e " + d2 + " ci sono " + d2.giorniPassati(d) + " giorni di differenza.");
         Date dataCorrente = Date.ottieniDataCorrente();
         dataCorrente.stampa();
+        System.out.println("Tra 365 giorni sarà il " + Date.ottieniDataCorrente().aggiungiGiorni(365));
+        System.out.println("Dal "+d+" al "+d2 + "sono passati " + d.anniPassati(d2)+" anni.");
     }
 }
