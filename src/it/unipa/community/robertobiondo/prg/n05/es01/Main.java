@@ -22,7 +22,7 @@ public class Main {
         int scelta;
         do {
             Main.printMainMenu();
-            scelta = MainUtils.integerFromKeyboardInRange(1, 4);
+            scelta = MainUtils.integerFromKeyboard(1, 4);
             switch (scelta) {
                 case 1:
                     Main.addSubscriber();
@@ -117,7 +117,7 @@ public class Main {
 
     public static void addSubscriber() {
         Main.printNewSubscriberMenu();
-        int scelta = MainUtils.integerFromKeyboardInRange(1, 3);
+        int scelta = MainUtils.integerFromKeyboard(1, 3);
         switch (scelta) {
             case 1:
                 abbonati.add(Main.acquireSubscriberFromKeyboard());
@@ -132,7 +132,7 @@ public class Main {
 
     public static void addPremiumSubscriber() {
         Main.printNewPremiumSubscriberMenu();
-        int scelta = MainUtils.integerFromKeyboardInRange(1, 3);
+        int scelta = MainUtils.integerFromKeyboard(1, 3);
         switch (scelta) {
             case 1:
                 abbonatiPremium.add(Main.acquirePremiumSubscriberFromKeyboard());
@@ -148,7 +148,7 @@ public class Main {
     public static Abbonato acquireSubscriberFromKeyboard() {
         Persona abbonato = MainUtils.personFromKeyboard(18);
         System.out.print("Inserire la percentuale di sconto a cui avrà diritto l'abbonato: ");
-        int sconto = MainUtils.integerFromKeyboardInRange(0, 80);
+        int sconto = MainUtils.integerFromKeyboard(0, 80);
         return new Abbonato(abbonato, (byte) sconto);
     }
 
@@ -161,7 +161,7 @@ public class Main {
         if (!abbonati.isEmpty()) {
             Main.printSubscriberList();
             System.out.print("Digitare il numero dell'abbonato da promuovere a premium, oppure digitare " + (abbonati.size() + 1) + " per annullare: ");
-            int scelta = MainUtils.integerFromKeyboardInRange(1, abbonati.size() + 1) - 1;
+            int scelta = MainUtils.integerFromKeyboard(1, abbonati.size() + 1) - 1;
             if (scelta != abbonati.size()) {
                 abbonatiPremium.add(new AbbonatoPremium(abbonati.get(scelta)));
                 System.out.println("Abbonato " + abbonati.get(scelta).getCognome() + " " + abbonati.get(scelta).getNome() + " promosso a premium!");
@@ -177,10 +177,10 @@ public class Main {
         if (!abbonatiPremium.isEmpty()) {
             Main.printPremiumSubscriberList();
             System.out.print("Digitare il numero dell'abbonato premium da gestire, oppure digitare " + (abbonatiPremium.size() + 1) + " per annullare: ");
-            int scelta = MainUtils.integerFromKeyboardInRange(1, abbonati.size() + 1) - 1;
+            int scelta = MainUtils.integerFromKeyboard(1, abbonati.size() + 1) - 1;
             if (scelta != abbonatiPremium.size()) {
                 Main.printManagePremiumSubscriberMenu();
-                int operazione = MainUtils.integerFromKeyboardInRange(1, 3);
+                int operazione = MainUtils.integerFromKeyboard(1, 3);
                 switch (operazione) {
                     case 1:
                         Main.addBuy(abbonatiPremium.get(scelta));
@@ -199,7 +199,7 @@ public class Main {
 
     public static void addBuy(AbbonatoPremium abbonatoPremium) {
         System.out.print("\nInserire il totale in euro dei nuovi acquisti effettuati dall'abbonato premium " + abbonatoPremium.getCognome() + " " + abbonatoPremium.getNome() + " :");
-        int importo = MainUtils.integerFromKeyboardInRange(1, Integer.MAX_VALUE);
+        int importo = MainUtils.integerFromKeyboard(1, Integer.MAX_VALUE);
         abbonatoPremium.accumulaSpesa(importo);
     }
 
@@ -209,7 +209,7 @@ public class Main {
         }
         else {
             System.out.print("Digitare il numero di acquisti bonus effettuati da registrare (disponibili "+abbonatoPremium.getAcquistiBonus() +"): ");
-            int acquisti = MainUtils.integerFromKeyboardInRange(1, abbonatoPremium.getAcquistiBonus());
+            int acquisti = MainUtils.integerFromKeyboard(1, abbonatoPremium.getAcquistiBonus());
             abbonatoPremium.effettuaAcquistiBonus(acquisti);
         }
     }

@@ -11,8 +11,6 @@ package it.unipa.community.robertobiondo.prg.n05.es05;
  */
 public abstract class Shape {
 
-    private static final String SHAPE_NAME = "generic shape";
-
     private String color = "black";
     private boolean filled = false;
 
@@ -39,10 +37,6 @@ public abstract class Shape {
         return this.filled;
     }
 
-    public String getShapeName() {
-        return this.SHAPE_NAME;
-    }
-
     public abstract double perimeter();
 
     public abstract double area();
@@ -50,7 +44,7 @@ public abstract class Shape {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        s.append("A ").append(color).append(" ").append((filled) ? "full " : "empty ").append(this.getShapeName()).append(" ");
+        s.append("A ").append(color).append(" ").append((filled) ? "full " : "empty ").append("generic shape").append(" ");
         return s.toString();
     }
 }
