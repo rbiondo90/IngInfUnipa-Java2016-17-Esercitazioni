@@ -25,7 +25,7 @@ public class Main {
         int scelta;
         do {
             Main.printMainMenu();
-            scelta = MainUtils.integerFromKeyboardInRange(1, 3);
+            scelta = MainUtils.integerFromKeyboard(1, 3);
             switch (scelta) {
                 case 1:
                     Main.recordCreation(persone);
@@ -54,7 +54,7 @@ public class Main {
         int scelta;
         Persona persona = MainUtils.personFromKeyboard(18);
         Main.printCreationMenu();
-        scelta = MainUtils.integerFromKeyboardInRange(1, 3);
+        scelta = MainUtils.integerFromKeyboard(1, 3);
         switch (scelta) {
             case 1:
                 Professore professore = Main.professorFromKeyboard(persona);
@@ -71,7 +71,7 @@ public class Main {
     public static void studentCreation(List<Persona> persone, Persona persona) {
         int scelta;
         Main.printStudentCreationMenu();
-        scelta = MainUtils.integerFromKeyboardInRange(1, 3);
+        scelta = MainUtils.integerFromKeyboard(1, 3);
         switch (scelta) {
             case 1:
                 Studente studente = studentFromKeyboard(persona);
@@ -102,24 +102,24 @@ public class Main {
     public static Professore professorFromKeyboard(Persona persona) {
         System.out.println("Inserire i dati del professor " + persona.getCognome() + " " + persona.getNome() + ": ");
         System.out.print("\nData di assunzione: ");
-        Date dataDiAssunzione = MainUtils.dateFromKeyboard();
+        Date dataDiAssunzione = MainUtils.dateFromKeyboard(25);
         System.out.print("Ruolo: ");
         String ruolo = MainUtils.stringFromKeyboard(Arrays.asList("professore associato", "professore ordinario", "ricercatore", "pa", "po", "r"));
         System.out.print("Dipartimento: ");
         String dipartimento = MainUtils.stringFromKeyboard();
         System.out.print("Salario: ");
-        int salario = MainUtils.integerFromKeyboardInRange(0, Integer.MAX_VALUE);
+        int salario = MainUtils.integerFromKeyboard(0, Integer.MAX_VALUE);
         return new Professore(persona, dataDiAssunzione, ruolo, dipartimento, salario);
     }
 
     public static Studente studentFromKeyboard(Persona persona) {
         System.out.println("Inserire i dati dello studente " + persona.getCognome() + " " + persona.getNome() + ": ");
         System.out.print("\nData di  iscrizione: ");
-        Date dataIscrizione = MainUtils.dateFromKeyboard(persona.getEta() + 18);
+        Date dataIscrizione = MainUtils.dateFromKeyboard(persona.getDataDiNascita().aggiungiAnni(18));
         System.out.print("Corso di laurea: ");
         String corsoDiLaurea = MainUtils.stringFromKeyboard();
         System.out.print("Numero di matricola: ");
-        int matricola = MainUtils.integerFromKeyboardInRange(0, 99999);
+        int matricola = MainUtils.integerFromKeyboard(0, 99999);
         return new Studente(persona, dataIscrizione, matricola, corsoDiLaurea);
     }
 
