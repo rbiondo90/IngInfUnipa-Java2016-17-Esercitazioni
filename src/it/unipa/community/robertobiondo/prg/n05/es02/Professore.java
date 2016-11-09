@@ -39,7 +39,7 @@ public class Professore extends Persona {
     }
 
     private boolean setDataAssunzione(Date dataAssunzione) {
-        if (dataAssunzione != null && this.getDataDiNascita().anniPassati(dataAssunzione) >= 25) {
+        if (dataAssunzione != null && this.getDataDiNascita().anniDiDifferenza(dataAssunzione) >= 25) {
             this.dataAssunzione = dataAssunzione.clone();
             this.updateValiditàRecord();
             return true;

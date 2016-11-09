@@ -63,7 +63,7 @@ public class Studente {
     }
 
     public boolean setDataDiImmatricolazione(Date dataDiImmatricolazione) {
-        if(dataDiImmatricolazione.anniPassati(this.dataDiNascita)>18){
+        if(dataDiImmatricolazione.anniDiDifferenza(this.dataDiNascita)>18){
             this.dataDiImmatricolazione = dataDiImmatricolazione;
             return true;
         }

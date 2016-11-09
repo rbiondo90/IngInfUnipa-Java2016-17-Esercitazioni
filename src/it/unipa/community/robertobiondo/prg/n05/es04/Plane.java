@@ -16,24 +16,12 @@ import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
 public class Plane {
 
     private Point3D p1, p2, p3;
-    private boolean validity = false;
 
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
-        int originCount = 0;
-        if (p1.equals(new Point3D())) {
-            originCount++;
-        }
-        if (p2.equals(new Point3D())) {
-            originCount++;
-        }
-        if (p3.equals(new Point3D())) {
-            originCount++;
-        }
-        if (originCount == 1 || Vector.linearIndependence(p1.toVector(), p2.toVector(), p3.toVector())) {
+        if (Vector.linearIndependence(p1.toVector(), p2.toVector(), p3.toVector())) {
             this.p1 = p1;
             this.p2 = p2;
             this.p3 = p3;
-            this.validity = true;
         }
     }
 
@@ -50,60 +38,44 @@ public class Plane {
     }
 
     public double getParameterA() {
-        if (this.validity) {
-            double a11 = this.getP2().getY() - this.getP1().getY();
-            double a12 = this.getP2().getZ() - this.getP1().getZ();
-            double a21 = this.getP3().getY() - this.getP1().getY();
-            double a22 = this.getP3().getZ() - this.getP1().getZ();
-            Matrix a = new Matrix(2, a11, a12, a21, a22);
-            return a.determinant();
-        } else {
-            return Float.NaN;
-        }
+        double a11 = this.getP2().getY() - this.getP1().getY();
+        double a12 = this.getP2().getZ() - this.getP1().getZ();
+        double a21 = this.getP3().getY() - this.getP1().getY();
+        double a22 = this.getP3().getZ() - this.getP1().getZ();
+        Matrix a = new Matrix(2, a11, a12, a21, a22);
+        return a.determinant();
     }
 
     public double getParameterB() {
-        if (this.validity) {
-            double b11 = this.getP2().getX() - this.getP1().getX();
-            double b12 = this.getP2().getZ() - this.getP1().getZ();
-            double b21 = this.getP3().getX() - this.getP1().getX();
-            double b22 = this.getP3().getZ() - this.getP1().getZ();
-            Matrix b = new Matrix(2, b11, b12, b21, b22);
-            return b.determinant();
-        } else {
-            return Float.NaN;
-        }
+        double b11 = this.getP2().getX() - this.getP1().getX();
+        double b12 = this.getP2().getZ() - this.getP1().getZ();
+        double b21 = this.getP3().getX() - this.getP1().getX();
+        double b22 = this.getP3().getZ() - this.getP1().getZ();
+        Matrix b = new Matrix(2, b11, b12, b21, b22);
+        return b.determinant();
     }
 
     public double getParameterC() {
-        if (this.validity) {
-            double c11 = this.getP2().getX() - this.getP1().getX();
-            double c12 = this.getP2().getY() - this.getP1().getY();
-            double c21 = this.getP3().getX() - this.getP1().getX();
-            double c22 = this.getP3().getY() - this.getP1().getY();
-            Matrix c = new Matrix(2, c11, c12, c21, c22);
-            return c.determinant();
-        } else {
-            return Float.NaN;
-        }
+        double c11 = this.getP2().getX() - this.getP1().getX();
+        double c12 = this.getP2().getY() - this.getP1().getY();
+        double c21 = this.getP3().getX() - this.getP1().getX();
+        double c22 = this.getP3().getY() - this.getP1().getY();
+        Matrix c = new Matrix(2, c11, c12, c21, c22);
+        return c.determinant();
     }
 
     public double getParameterD() {
-        if (this.validity) {
-            double a = this.getParameterA();
-            double b = this.getParameterB();
-            double c = this.getParameterC();
-            double x1 = this.getP1().getX();
-            double y1 = this.getP1().getY();
-            double z1 = this.getP1().getZ();
-            return -(a * x1 + b * y1 + c * z1);
-        } else {
-            return Float.NaN;
-        }
+        double a = this.getParameterA();
+        double b = this.getParameterB();
+        double c = this.getParameterC();
+        double x1 = this.getP1().getX();
+        double y1 = this.getP1().getY();
+        double z1 = this.getP1().getZ();
+        return -(a * x1 + b * y1 + c * z1);
     }
 
     public boolean containsPoint(Point3D point) {
-        if (this.validity) {
+        if (this.getP1() != null && this.getP2() != null && this.getP3() != null) {
             double a = this.getParameterA();
             double b = this.getParameterB();
             double c = this.getParameterC();
@@ -116,7 +88,7 @@ public class Plane {
 
     @Override
     public String toString() {
-        if (this.validity) {
+        if (this.getP1() != null && this.getP2() != null && this.getP2() != null) {
             StringBuilder s = new StringBuilder();
             double a, b, c, d;
             a = this.getParameterA();
@@ -176,9 +148,11 @@ public class Plane {
     public void print() {
         System.out.println(this);
     }
-    
-    public boolean getValidity(){
-        return this.validity;
+
+    public static void main(String args[]) {
+        Plane p1 = new Plane(new Point3D(2, 4, 1), new Point3D(2, 15, 1), new Point3D(1, 0, 0));
+        p1.print();
+        System.out.println(p1.containsPoint(new Point3D(1, 2, 1)));
     }
 
 }

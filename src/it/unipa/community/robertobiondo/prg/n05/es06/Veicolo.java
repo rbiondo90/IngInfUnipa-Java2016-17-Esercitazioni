@@ -74,11 +74,10 @@ public abstract class Veicolo {
             double posizioneIniziale = this.getPosizione().getLength();
             this.setPosizione(this.getPosizione().sum(this.getVelocitàIniziale().scalarMult(deltaT), this.getAccelerazione().scalarMult(Math.pow(deltaT, 2) * 0.5)));
             double mPercorsi = Math.abs(posizioneIniziale - this.getPosizione().getLength());
-            System.out.print("\nIl veicolo " + this.getNomeVeicolo() + " si è spostato di " + String.format("%.2f", mPercorsi) +
-                    " metri in " + String.format("%.0f", deltaT) + " secondi.");
+            System.out.println("\nIl veicolo " + this.getNomeVeicolo() + " si è spostato di " + String.format("%.2f", mPercorsi) + " metri in " + String.format("%.0f", deltaT) + " secondi.");
             this.usuraRuote(mPercorsi);
         } else {
-            System.out.println("\nPressione ruote troppo bassa. Effettuare un controllo prima di muovere il veicolo.");
+            System.out.println("Pressione ruote troppo bassa. Effettuare un controllo prima di muovere il veicolo.");
         }
 
     }

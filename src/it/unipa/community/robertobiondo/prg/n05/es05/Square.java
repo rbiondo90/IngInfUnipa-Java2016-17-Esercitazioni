@@ -11,6 +11,8 @@ package it.unipa.community.robertobiondo.prg.n05.es05;
  */
 public class Square extends Rectangle {
 
+    private static final String SHAPE_NAME = "square";
+
     public Square(String color, boolean filled, double side) {
         super(color, filled, side, side);
     }
@@ -32,13 +34,13 @@ public class Square extends Rectangle {
     }
 
     @Override
-    public String toString() {
-        return super.toString().replace("rectangle", "square");
+    public String getShapeName() {
+        return Square.SHAPE_NAME;
     }
 
-    @Override
-    public void print() {
-        System.out.println(this);
+    public static void main(String args[]) {
+        Square s = new Square(2);
+        s.print();
     }
 
 }

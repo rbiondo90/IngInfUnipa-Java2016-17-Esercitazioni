@@ -34,7 +34,7 @@ public class Studente extends Persona {
     }
 
     public boolean setDataIscrizione(Date dataIscrizione) {
-        if (dataIscrizione != null && this.getDataDiNascita().anniPassati(dataIscrizione) >= 18) {
+        if (dataIscrizione != null && this.getDataDiNascita().anniDiDifferenza(dataIscrizione) >= 18) {
             this.dataIscrizione = dataIscrizione.clone();
             this.updateValiditàRecord();
             return true;

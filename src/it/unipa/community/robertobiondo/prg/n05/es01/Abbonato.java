@@ -13,7 +13,7 @@ public class Abbonato extends Persona {
 
     public Abbonato(Date dataDiNascita, String nome, String cognome, String codiceFiscale, String indirizzo, String città, String cap, byte sconto) {
         super(dataDiNascita, nome, cognome, codiceFiscale, indirizzo, città, cap);
-        if (super.getValiditàRecord() && this.getDataDiNascita().anniPassati(Date.ottieniDataCorrente()) >= 18) {
+        if (super.getValiditàRecord() && this.getDataDiNascita().anniDiDifferenza(Date.ottieniDataCorrente()) >= 18) {
             this.setSconto(sconto);
         } else {
             this.validitàRecord = false;

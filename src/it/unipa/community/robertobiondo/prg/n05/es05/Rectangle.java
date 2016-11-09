@@ -13,6 +13,7 @@ public class Rectangle extends Shape {
 
     private double width;
     private double length;
+    private static final String SHAPE_NAME = "Rectangle";
 
     public Rectangle(String color, boolean filled, double width, double length) {
         super(color, filled);
@@ -55,6 +56,11 @@ public class Rectangle extends Shape {
     }
 
     @Override
+    public String getShapeName() {
+        return Rectangle.SHAPE_NAME;
+    }
+
+    @Override
     public String toString() {
         if (this.getWidth() != 0 && this.getLength() != 0) {
             StringBuilder s = new StringBuilder(super.toString());
@@ -66,7 +72,7 @@ public class Rectangle extends Shape {
             }
             s.append("\nPerimeter = ").append(this.perimeter()).append("cm.");
             s.append("\nArea = ").append(this.area()).append("cm^2.");
-            return s.toString().replace("generic shape","rectangle");
+            return s.toString();
         } else {
             return "Not a valid rectangle.";
         }
@@ -74,5 +80,10 @@ public class Rectangle extends Shape {
 
     public void print() {
         System.out.println(this);
+    }
+
+    public static void main(String args[]) {
+        Rectangle r = new Rectangle(1, 0.5);
+        r.print();
     }
 }
