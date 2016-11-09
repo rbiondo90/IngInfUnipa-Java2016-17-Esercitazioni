@@ -1,4 +1,4 @@
-package it.unipa.community.robertobiondo.prg.n05.es04;
+package it.unipa.community.robertobiondo.prg.utilities.math;
 
 import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
 
