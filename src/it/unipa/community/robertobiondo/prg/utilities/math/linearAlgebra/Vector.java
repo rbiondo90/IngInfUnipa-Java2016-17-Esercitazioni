@@ -79,10 +79,6 @@ public class Vector {//Classe importata da miei progetti personali per utilità 
         return s;
     }
     
-    public Vector difference(Vector v2){
-        return this.sum(v2.lambdaVector(-1));
-    }
-    
     public Vector lambdaVector(double lambda){
         Vector lv= this.clone();
         for(int i=0;i<lv.getDim();i++){

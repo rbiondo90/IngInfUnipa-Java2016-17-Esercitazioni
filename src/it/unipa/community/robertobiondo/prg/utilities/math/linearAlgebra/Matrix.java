@@ -1,6 +1,6 @@
 package it.unipa.community.robertobiondo.prg.utilities.math.linearAlgebra;
 
-import it.unipa.community.robertobiondo.prg.utilities.math.Rational;
+import it.unipa.community.robertobiondo.prg.n05.es04.Rational;
 
 public class Matrix {//Classe importata da miei progetti personali per utilità nell'esercizio
     private int rows, cols;
@@ -129,7 +129,7 @@ public class Matrix {//Classe importata da miei progetti personali per utilità 
                 Matrix ordered = this.orderRowsForStartingZeros(-1);
                 for (int i = 0; i < ordered.getCols(); i++) {
                     if (ordered.getElement(0, i) != 0) {
-                        det += Math.pow(-1, i) * ordered.getElement(0, i) * (ordered.subMatrix(0, i).determinant());
+                        det += Math.pow(-1, i) * ordered.getElement(0, i) * (ordered.minor(0, i).determinant());
                     }
                 }
             }
@@ -139,38 +139,38 @@ public class Matrix {//Classe importata da miei progetti personali per utilità 
         }
     }
 
-    public Matrix subMatrix(int row, int column) {
-        return this.subMatrixByRow(row).subMatrixByColumn(column);
+    public Matrix minor(int row, int column) {
+        return this.minorRow(row).minorColumn(column);
     }
 
-    public Matrix subMatrixByColumn(int column) {
+    public Matrix minorColumn(int column) {
         if (this.getCols() < column) {
             return new Matrix(1);
         } else {
-            Matrix subMatrix = new Matrix((this.getRows()), (this.getCols() - 1));
-            for (int i = 0, j = 0; i < subMatrix.getRows(); i++, j++) {
+            Matrix minor = new Matrix((this.getRows()), (this.getCols() - 1));
+            for (int i = 0, j = 0; i < minor.getRows(); i++, j++) {
                 if(j==column) j++;
-                subMatrix.setCol(this.getCol(j),i);
+                minor.setCol(this.getCol(j),i);
 
             }
-            return subMatrix;
+            return minor;
         }
     }
 
-    public Matrix subMatrixByRow(int row) {
+    public Matrix minorRow(int row) {
         if (this.getRows() < row) {
             return new Matrix(1);
         } else {
-            Matrix subMatrix = new Matrix((this.getRows() - 1), (this.getCols()));
-            for (int i = 0, j = 0; i < subMatrix.getRows(); i++, j++) {
+            Matrix minor = new Matrix((this.getRows() - 1), (this.getCols()));
+            for (int i = 0, j = 0; i < minor.getRows(); i++, j++) {
                 if (j == row) {
                     j++;
                 }
-                for (int k = 0; k < subMatrix.getCols(); k++) {
-                    subMatrix.setElement(this.getElement(j, k), i, k);
+                for (int k = 0; k < minor.getCols(); k++) {
+                    minor.setElement(this.getElement(j, k), i, k);
                 }
             }
-            return subMatrix;
+            return minor;
         }
     }
 
@@ -443,7 +443,7 @@ public class Matrix {//Classe importata da miei progetti personali per utilità 
     }
 
     public double cofactor(int row, int column) {
-        double c = (this.isSquare()) ? (Math.pow(-1, (row + column)) * this.subMatrix(row, column).determinant()) : Float.NaN;
+        double c = (this.isSquare()) ? (Math.pow(-1, (row + column)) * this.minor(row, column).determinant()) : Float.NaN;
         return c;
     }
 
