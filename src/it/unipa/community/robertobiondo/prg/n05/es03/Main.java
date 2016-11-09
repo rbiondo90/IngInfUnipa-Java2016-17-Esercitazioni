@@ -21,7 +21,8 @@ public class Main {
         Point2D punto3;
         Line retta;
         System.out.println("Programma di test delle classi Point2D e Line. \nVerrano creati due punti del piano con coordinate inserite dall'utente, e si verificherà poi se"
-                + "questi due punti individuano una retta.\nSe una retta è stata individuata, successivamente verranno richieste le coordinate di un terzo punto,"
+                + "questi due punti individuano una retta (ovvero se non sono uguali)"
+                + ".\nSe una retta è stata individuata, successivamente verranno richieste le coordinate di un terzo punto,"
                 + "e verrà verificato se tale punto appartiene alla retta");
         System.out.print("Inserire la coordinata x del primo punto: ");
         x = MainUtils.doubleFromKeyboard();
@@ -35,7 +36,7 @@ public class Main {
         punto2 = new Point2D(x, y);
         System.out.println("Sono stati creati i due punti: " + punto1 + ", " + punto2);
         retta = new Line(punto1, punto2);
-        System.out.println(((retta.getValidity()) ? ("I due punti individuano la retta: " + retta) : ("I due punti sono linearmente indipendenti e quindi non individuano una retta.")));
+        System.out.println(((retta.getValidity()) ? ("I due punti individuano la retta: " + retta) : ("I due punti sono uguali e quindi non individuano una retta.")));
         if (retta.getValidity()) {
             System.out.print("Inserire la coordinata x del terzo punto: ");
             x = MainUtils.doubleFromKeyboard();
