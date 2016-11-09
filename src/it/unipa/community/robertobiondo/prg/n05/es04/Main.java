@@ -48,7 +48,7 @@ public class Main {
         punto3 = new Point3D(x, y, z);
         System.out.println("Sono stati creati i tre punti: " + punto1 + ", " + punto2 + ", " + punto3);
         piano = new Plane(punto1, punto2, punto3);
-        System.out.println(((piano.getValidity()) ? ("I tre punti individuano il piano: " + piano) : ("I tre punti sono linearmente indipendenti e quindi non individuano un piano.")));
+        System.out.println(((piano.getValidity()) ? ("I tre punti individuano il piano: " + piano) : ("I tre punti sono allineati e quindi non individuano un piano.")));
         if (piano.getValidity()) {
             System.out.print("Inserire la coordinata x del quarto punto: ");
             x = MainUtils.doubleFromKeyboard();

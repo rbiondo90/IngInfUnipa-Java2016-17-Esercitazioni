@@ -109,7 +109,7 @@ public class MainUtils {
      * @return the double inserted by the user
      */
     public static double doubleFromKeyboard() {
-        return MainUtils.doubleFromKeyboard(Double.MIN_VALUE, Double.MAX_VALUE);
+        return MainUtils.doubleFromKeyboard(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
     }
 
     /**

@@ -19,17 +19,7 @@ public class Plane {
     private boolean validity = false;
 
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
-        int originCount = 0;
-        if (p1.equals(new Point3D())) {
-            originCount++;
-        }
-        if (p2.equals(new Point3D())) {
-            originCount++;
-        }
-        if (p3.equals(new Point3D())) {
-            originCount++;
-        }
-        if (originCount == 1 || Vector.linearIndependence(p1.toVector(), p2.toVector(), p3.toVector())) {
+        if (Vector.linearIndependence((p1.toVector().difference(p2.toVector())),(p3.toVector().difference(p2.toVector())))) {
             this.p1 = p1;
             this.p2 = p2;
             this.p3 = p3;
@@ -69,7 +59,7 @@ public class Plane {
             double b21 = this.getP3().getX() - this.getP1().getX();
             double b22 = this.getP3().getZ() - this.getP1().getZ();
             Matrix b = new Matrix(2, b11, b12, b21, b22);
-            return b.determinant();
+            return -b.determinant();
         } else {
             return Float.NaN;
         }

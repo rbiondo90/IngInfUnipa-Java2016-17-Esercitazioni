@@ -19,14 +19,7 @@ public class Line {
     private boolean validity = false;
 
     public Line(Point2D p1, Point2D p2) {
-        int originCount = 0;
-        if (p1.equals(new Point2D())) {
-            originCount++;
-        }
-        if (p2.equals(new Point2D())) {
-            originCount++;
-        }
-        if (originCount == 1 || Vector.linearIndependence(p1.toVector(), p2.toVector())) {
+        if (!p1.equals(p2)) {
             this.p1 = p1;
             this.p2 = p2;
             this.validity = true;
