@@ -19,4 +19,21 @@ public class Bicicletta extends Veicolo {
         super(posizione, velocitàIniziale, accelerazione, 2, "bicicletta");
     }
 
+    @Override
+    public void muovi(double deltaT) {
+        if (this.controlloPressione()) {
+            double posizioneIniziale = this.getPosizione().getLength();
+            double posizioneX = this.getPosizione().getX()+this.getVelocitàIniziale().getX()*deltaT + this.getAccelerazione().getX()*Math.pow(deltaT,2)*0.5;
+            double posizioneY = Math.cos(posizioneX);
+            this.setPosizione(new Vector2D(posizioneX,posizioneY));
+            double mPercorsi = Math.abs(posizioneIniziale - this.getPosizione().getLength());
+            System.out.print("\nIl veicolo " + this.getNomeVeicolo() + " si è spostato di " + String.format("%.2f", mPercorsi)
+                    + " metri in " + String.format("%.0f", deltaT) + " secondi.");
+            this.usuraRuote(mPercorsi);
+        } else {
+            System.out.println("\nPressione ruote troppo bassa. Effettuare un controllo prima di muovere il veicolo.");
+        }
+
+    }
+
 }

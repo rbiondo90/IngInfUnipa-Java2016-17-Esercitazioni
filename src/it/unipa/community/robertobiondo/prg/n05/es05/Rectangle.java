@@ -5,11 +5,14 @@
  */
 package it.unipa.community.robertobiondo.prg.n05.es05;
 
+import it.unipa.community.robertobiondo.prg.n06.es06.Scalable;
+import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
+
 /**
  *
  * @author Bob
  */
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Scalable {
 
     private double width;
     private double length;
@@ -45,6 +48,14 @@ public class Rectangle extends Shape {
     }
 
     @Override
+    public void scale(double factor) {
+        if (factor > 0) {
+            this.setLength(this.getLength() * factor);
+            this.setWidth(this.getWidth() * factor);
+        }
+    }
+
+    @Override
     public double perimeter() {
         return 2 * (this.getWidth() + this.getLength());
     }
@@ -58,15 +69,15 @@ public class Rectangle extends Shape {
     public String toString() {
         if (this.getWidth() != 0 && this.getLength() != 0) {
             StringBuilder s = new StringBuilder(super.toString());
-            s.append("with a width of ").append(this.getWidth()).append("cm");
+            s.append("with width of ").append(MathUtils.doubleFormat(this.getWidth())).append("cm");
             if (this.getWidth() != this.getLength()) {
-                s.append(" and a length of ").append(this.getLength()).append("cm.");
+                s.append(" and length of ").append(MathUtils.doubleFormat(this.getLength())).append("cm.");
             } else {
                 s.append(".");
             }
-            s.append("\nPerimeter = ").append(this.perimeter()).append("cm.");
-            s.append("\nArea = ").append(this.area()).append("cm^2.");
-            return s.toString().replace("generic shape","rectangle");
+            s.append("\nPerimeter = ").append(MathUtils.doubleFormat(this.perimeter())).append("cm.");
+            s.append("\nArea = ").append(MathUtils.doubleFormat(this.area())).append("cm^2.");
+            return s.toString().replace("generic shape", "rectangle");
         } else {
             return "Not a valid rectangle.";
         }

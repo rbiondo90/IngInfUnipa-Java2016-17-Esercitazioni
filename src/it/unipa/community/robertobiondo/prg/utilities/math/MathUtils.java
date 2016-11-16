@@ -114,5 +114,13 @@ public class MathUtils{
     public static boolean isInteger(double a){
             return a==Math.floor(a);
         }
+
+    public static String doubleFormat(double number) {
+        if (isInteger(number)) {
+            return String.format("%d", (long) number);
+        } else {
+            return String.format("%s", number);
+        }
+    }
         
 }

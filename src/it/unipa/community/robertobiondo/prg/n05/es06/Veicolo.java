@@ -69,19 +69,7 @@ public abstract class Veicolo {
         return this.NOME_VEICOLO;
     }
 
-    public void muovi(double deltaT) {
-        if (this.controlloPressione()) {
-            double posizioneIniziale = this.getPosizione().getLength();
-            this.setPosizione(this.getPosizione().sum(this.getVelocitàIniziale().scalarMult(deltaT), this.getAccelerazione().scalarMult(Math.pow(deltaT, 2) * 0.5)));
-            double mPercorsi = Math.abs(posizioneIniziale - this.getPosizione().getLength());
-            System.out.print("\nIl veicolo " + this.getNomeVeicolo() + " si è spostato di " + String.format("%.2f", mPercorsi) +
-                    " metri in " + String.format("%.0f", deltaT) + " secondi.");
-            this.usuraRuote(mPercorsi);
-        } else {
-            System.out.println("\nPressione ruote troppo bassa. Effettuare un controllo prima di muovere il veicolo.");
-        }
-
-    }
+    public abstract void muovi(double deltaT);
 
     public boolean controlloPressione() {
         for (int i = 0; i < this.getNumeroRuote(); i++) {

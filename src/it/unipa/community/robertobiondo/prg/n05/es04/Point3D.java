@@ -7,6 +7,7 @@ package it.unipa.community.robertobiondo.prg.n05.es04;
 
 import it.unipa.community.robertobiondo.prg.utilities.math.linearAlgebra.Vector;
 import it.unipa.community.robertobiondo.prg.n05.es03.Point2D;
+import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
 
 /**
  *
@@ -49,9 +50,10 @@ public class Point3D extends Point2D {
 
     @Override
     public String toString() {
-        return "(" + this.getX() + "," + this.getY() + "," + this.getZ() + ")";
+        return "(" + MathUtils.doubleFormat(this.getX()) + "," + MathUtils.doubleFormat(this.getY()) + "," + MathUtils.doubleFormat(this.getZ()) + ")";
     }
 
+    @Override
     public void print() {
         System.out.println(this);
     }

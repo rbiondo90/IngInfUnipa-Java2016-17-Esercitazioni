@@ -136,25 +136,25 @@ public class Plane {
                 d /= gcd;
             }
             if (a != 0) {
-                s.append((a != 1 && (b != 0 || c != 0 || d != 0)) ? a : "").append("x ");
+                s.append((a != 1 && (b != 0 || c != 0 || d != 0)) ? MathUtils.doubleFormat(a) : "").append("x ");
             }
             if (b != 0) {
                 if (a != 0) {
                     s.append((b > 0) ? "+ " : "- ");
                 }
-                s.append((b != 1 && b != -1 && (a != 0 || c != 0 || d != 0)) ? Math.abs(b) : "");
+                s.append((b != 1 && b != -1 && (a != 0 || c != 0 || d != 0)) ? MathUtils.doubleFormat(Math.abs(b)) : "");
                 s.append("y ");
             }
             if (c != 0) {
                 if (a != 0 || b != 0) {
                     s.append((c > 0) ? "+ " : "- ");
                 }
-                s.append((c != 1 && c != -1 && (a != 0 || b != 0 || d != 0)) ? Math.abs(c) : "");
+                s.append((c != 1 && c != -1 && (a != 0 || b != 0 || d != 0)) ? MathUtils.doubleFormat(Math.abs(c)) : "");
                 s.append("z ");
             }
             if (d != 0) {
                 s.append((d > 0) ? "+ " : "- ");
-                s.append(Math.abs(d)).append(" ");
+                s.append(MathUtils.doubleFormat(Math.abs(d))).append(" ");
             }
             s.append("= 0");
             return s.toString();

@@ -79,18 +79,18 @@ public class Line {
                 c /= gcd;
             }
             if (a != 0) {
-                s.append((a != 1 && (b != 0 || c != 0)) ? a : "").append("x ");
+                s.append((a != 1 && (b != 0 || c != 0)) ? MathUtils.doubleFormat(a) : "").append("x ");
             }
             if (b != 0) {
                 if (a != 0) {
                     s.append((b > 0) ? "+ " : "- ");
                 }
-                s.append((b != 1 && b != -1 && (a != 0 || c != 0)) ? Math.abs(b) : "");
+                s.append((b != 1 && b != -1 && (a != 0 || c != 0)) ? MathUtils.doubleFormat(Math.abs(b)) : "");
                 s.append("y ");
             }
             if (c != 0) {
                 s.append((c > 0) ? "+ " : "- ");
-                s.append(Math.abs(c)).append(" ");
+                s.append(MathUtils.doubleFormat(Math.abs(c))).append(" ");
             }
             s.append("= 0");
             return s.toString();
