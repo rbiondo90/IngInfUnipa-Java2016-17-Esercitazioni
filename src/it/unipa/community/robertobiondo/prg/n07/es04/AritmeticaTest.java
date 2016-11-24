@@ -9,7 +9,7 @@ package it.unipa.community.robertobiondo.prg.n07.es04;
  *
  * @author Roberto Biondo
  */
-public class Matematica {
+public class AritmeticaTest {
 
     public static void main(String args[]) {
         Razionale r1 = new Razionale(1, 2);

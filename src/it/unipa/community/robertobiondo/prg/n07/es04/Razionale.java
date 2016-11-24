@@ -2,7 +2,7 @@ package it.unipa.community.robertobiondo.prg.n07.es04;
 
 import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
 
-public class Razionale implements Comparable, Aritmetica {
+public class Razionale implements Comparable, AritmeticaRazionale {
 
     private int numeratore, denominatore;
     private boolean validity = true;
@@ -190,37 +190,4 @@ public class Razionale implements Comparable, Aritmetica {
         }
 
     }
-
-    @Override
-    public Aritmetica somma(Aritmetica elemento2) {
-        if (!(elemento2 instanceof Razionale)) {
-            throw new ClassCastException("Il metodo somma si aspetta un Razionale come parametro!");
-        }
-        return this.somma((Razionale) elemento2);
-    }
-
-    @Override
-    public Aritmetica sottrai(Aritmetica elemento2) {
-        if (!(elemento2 instanceof Razionale)) {
-            throw new ClassCastException("Il metodo sottrai si aspetta un Razionale come parametro!");
-        }
-        return this.sottrai((Razionale) elemento2);
-    }
-
-    @Override
-    public Aritmetica moltiplica(Aritmetica elemento2) {
-        if (!(elemento2 instanceof Razionale)) {
-            throw new ClassCastException("Il metodo moltiplica si aspetta un Razionale come parametro!");
-        }
-        return this.moltiplica((Razionale) elemento2);
-    }
-
-    @Override
-    public Aritmetica dividi(Aritmetica elemento2) {
-        if (!(elemento2 instanceof Razionale)) {
-            throw new ClassCastException("Il metodo dividi si aspetta un Razionale come parametro!");
-        }
-        return this.dividi((Razionale) elemento2);
-    }
-
 }

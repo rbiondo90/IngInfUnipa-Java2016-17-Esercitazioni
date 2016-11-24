@@ -1,6 +1,6 @@
 package it.unipa.community.robertobiondo.prg.n07.es04;
 
-public class Complex implements Aritmetica {
+public class Complex implements AritmeticaComplex {
 
     private double parteReale;
     private double parteImmaginaria;
@@ -63,6 +63,7 @@ public class Complex implements Aritmetica {
         return c1.somma(c2);
     }
 
+    @Override
     public Complex somma(Complex c2) {
         return new Complex(this.getParteReale() + c2.getParteReale(), this.getParteImmaginaria() + c2.getParteImmaginaria());
     }
@@ -87,6 +88,7 @@ public class Complex implements Aritmetica {
         }
     }
 
+    @Override
     public Complex sottrai(Complex c2) {
         return this.somma(c2.opposto());
     }
@@ -96,26 +98,7 @@ public class Complex implements Aritmetica {
     }
 
     @Override
-    public Aritmetica somma(Aritmetica elemento2) {
-        if (!(elemento2 instanceof Complex)) {
-            throw new ClassCastException("Il metodo somma si aspetta un Complex come parametro!");
-        }
-        return (Complex) (this.somma((Complex) elemento2));
-    }
-
-    @Override
-    public Aritmetica sottrai(Aritmetica elemento2) {
-        if (!(elemento2 instanceof Complex)) {
-            throw new ClassCastException("Il metodo sottrai si aspetta un Complex come parametro!");
-        }
-        return (this.sottrai((Complex) elemento2));
-    }
-
-    @Override
-    public Aritmetica moltiplica(Aritmetica elemento2) {
-        if (!(elemento2 instanceof Complex)) {
-            throw new ClassCastException("Il metodo moltiplica si aspetta un Complex come parametro!");
-        }
+    public Complex moltiplica(Complex elemento2) {
         Complex c = (Complex) elemento2;
         double parteRealeDelProdotto = this.getParteReale() * c.getParteReale() - this.getParteImmaginaria() * c.getParteImmaginaria();
         double parteImmaginariaDelProdotto = this.getParteReale() * c.getParteImmaginaria() + this.getParteImmaginaria() * c.getParteReale();
@@ -123,10 +106,7 @@ public class Complex implements Aritmetica {
     }
 
     @Override
-    public Aritmetica dividi(Aritmetica elemento2) {
-        if (!(elemento2 instanceof Complex)) {
-            throw new ClassCastException("Il metodo dividi si aspetta un Complex come parametro!");
-        }
+    public Complex dividi(Complex elemento2) {
         return this.moltiplica(((Complex) elemento2).inverso());
     }
 
