@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.unipa.community.robertobiondo.prg.n05.es05;
+package it.unipa.community.robertobiondo.prg.n07.es06;
 
 /**
  *
@@ -62,5 +62,6 @@ public abstract class Shape implements Comparable {
             return 0;
         }
     }
-    
+
+    public abstract void draw();
 }

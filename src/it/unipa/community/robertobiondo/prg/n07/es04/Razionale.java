@@ -1,6 +1,8 @@
-package it.unipa.community.robertobiondo.prg.n03.es08;
+package it.unipa.community.robertobiondo.prg.n07.es04;
 
-public class Razionale implements Comparable {
+import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
+
+public class Razionale implements Comparable, Aritmetica {
 
     private int numeratore, denominatore;
     private boolean validity = true;
@@ -72,12 +74,13 @@ public class Razionale implements Comparable {
 
     public void semplifica() {
         if (this.getValidity()) {
-            int mcd = Matematica.MCD(getNumeratore(), getDenominatore());
+            int mcd = (int) MathUtils.GCD(getNumeratore(), getDenominatore());
             setNumeratore(getNumeratore() / mcd);
             setDenominatore(getDenominatore() / mcd);
         }
     }
 
+    @Override
     public String toString() {
 //le doppie virgolette nell'assegnazione false dell'operatore ternario sono state aggiunte perch�  senza il compilatore restituiva un errore del tipo "impossibile convertire int in stringa"
         return ((this.getValidity()) ? ((getNumeratore() != 0 && Math.abs(getDenominatore()) != 1) ? (getNumeratore() + "/" + getDenominatore()) : (getNumeratore() + "")) : "NaN");
@@ -88,13 +91,14 @@ public class Razionale implements Comparable {
         return f;
     }
 
+    @Override
     public void stampa() {
         System.out.println(this.toString());
     }
 
     public Razionale somma(Razionale f2) {
         if (this.getValidity() && f2.getValidity()) {
-            Razionale s = new Razionale(1, Matematica.mcm(this.getDenominatore(), f2.getDenominatore()));
+            Razionale s = new Razionale(1, (int) MathUtils.lcm(this.getDenominatore(), f2.getDenominatore()));
             s.setNumeratore(((s.getDenominatore() / this.getDenominatore()) * this.getNumeratore()) + ((s.getDenominatore() / f2.getDenominatore()) * f2.getNumeratore()));
             s.semplifica();
             return s;
@@ -125,13 +129,13 @@ public class Razionale implements Comparable {
         }
     }
 
-    public Razionale inversa() {
+    public Razionale inversa() throws ArithmeticException {
         Razionale inv;
         if (this.getNumeratore() != 0) {
             inv = new Razionale(this.getDenominatore(), this.getNumeratore());
             return inv;
         } else {
-            return null;
+            throw new ArithmeticException("Non posso invertire lo zero!");
         }
     }
 
@@ -186,4 +190,37 @@ public class Razionale implements Comparable {
         }
 
     }
+
+    @Override
+    public Aritmetica somma(Aritmetica elemento2) {
+        if (!(elemento2 instanceof Razionale)) {
+            throw new ClassCastException("Il metodo somma si aspetta un Razionale come parametro!");
+        }
+        return this.somma((Razionale) elemento2);
+    }
+
+    @Override
+    public Aritmetica sottrai(Aritmetica elemento2) {
+        if (!(elemento2 instanceof Razionale)) {
+            throw new ClassCastException("Il metodo sottrai si aspetta un Razionale come parametro!");
+        }
+        return this.sottrai((Razionale) elemento2);
+    }
+
+    @Override
+    public Aritmetica moltiplica(Aritmetica elemento2) {
+        if (!(elemento2 instanceof Razionale)) {
+            throw new ClassCastException("Il metodo moltiplica si aspetta un Razionale come parametro!");
+        }
+        return this.moltiplica((Razionale) elemento2);
+    }
+
+    @Override
+    public Aritmetica dividi(Aritmetica elemento2) {
+        if (!(elemento2 instanceof Razionale)) {
+            throw new ClassCastException("Il metodo dividi si aspetta un Razionale come parametro!");
+        }
+        return this.dividi((Razionale) elemento2);
+    }
+
 }

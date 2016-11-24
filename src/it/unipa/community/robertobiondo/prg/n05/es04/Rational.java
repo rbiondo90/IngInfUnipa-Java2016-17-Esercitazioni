@@ -2,7 +2,7 @@ package it.unipa.community.robertobiondo.prg.n05.es04;
 
 import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
 
-public class Rational{//Classe importata da miei progetti personali per utilità nell'esercizio
+public class Rational extends Number{//Classe importata da miei progetti personali per utilità nell'esercizio
 	private long numerator, denominator;
 	private boolean validity = true;
 	
@@ -171,4 +171,24 @@ public class Rational{//Classe importata da miei progetti personali per utilità
 	public double toDouble(){
 		return ((double)numerator/(double)denominator);
 	}
+
+    @Override
+    public int intValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public long longValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public float floatValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double doubleValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

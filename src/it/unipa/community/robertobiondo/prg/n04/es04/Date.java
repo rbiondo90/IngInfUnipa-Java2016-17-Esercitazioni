@@ -6,7 +6,7 @@ import java.util.Calendar;
  *
  * @author Bob
  */
-public class Date {
+public class Date implements Comparable {
 
     private int giorno;
     private int mese;
@@ -253,9 +253,13 @@ public class Date {
         }
         return new Date(giornoDaImpostare, this.getAnno() + anniDaAggiungere);
     }
-    
-    public Date aggiungiAnni(int anni){
-        return new Date(this.getGiorno(),this.getMese(),this.getAnno()+anni);
+
+    public Date aggiungiAnni(int anni) {
+        return new Date(this.getGiorno(), this.getMese(), this.getAnno() + anni);
+    }
+
+    public int giorniDallAnnoZero() {
+        return this.getAnno() * 365 + this.getGiornoDellAnno();
     }
 
     @Override
@@ -279,6 +283,15 @@ public class Date {
         Date dataCorrente = Date.ottieniDataCorrente();
         dataCorrente.stampa();
         System.out.println("Tra 365 giorni sarà il " + Date.ottieniDataCorrente().aggiungiGiorni(365));
-        System.out.println("Dal "+d+" al "+d2 + "sono passati " + d.anniPassati(d2)+" anni.");
+        System.out.println("Dal " + d + " al " + d2 + "sono passati " + d.anniPassati(d2) + " anni.");
+        System.out.println("d1 compare(d2) = " + d.compareTo(new Date("12/04/2015")));
+    }
+
+    @Override
+    public int compareTo(Object data) {
+        if (!(data instanceof Date)) {
+            throw new ClassCastException("A Date object expected!");
+        }
+        return this.giorniDallAnnoZero() - ((Date) data).giorniDallAnnoZero();
     }
 }

@@ -1,3 +1,5 @@
+package it.unipa.community.robertobiondo.prg.n02.es10;
+
 import java.util.Random;
 
 public class Matematica{
