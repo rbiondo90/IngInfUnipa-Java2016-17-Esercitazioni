@@ -1,6 +1,8 @@
-package it.unipa.community.robertobiondo.prg.n03.es08;
+package it.unipa.community.robertobiondo.prg.n07.es04;
 
-public class Razionale implements Comparable {
+import it.unipa.community.robertobiondo.prg.n03.es08.*;
+
+public class Razionale implements Comparable, Aritmetica {
 
     private int numeratore, denominatore;
     private boolean validity = true;
@@ -88,6 +90,7 @@ public class Razionale implements Comparable {
         return f;
     }
 
+    @Override
     public void stampa() {
         System.out.println(this.toString());
     }
@@ -125,13 +128,13 @@ public class Razionale implements Comparable {
         }
     }
 
-    public Razionale inversa() {
+    public Razionale inversa() throws ArithmeticException {
         Razionale inv;
         if (this.getNumeratore() != 0) {
             inv = new Razionale(this.getDenominatore(), this.getNumeratore());
             return inv;
         } else {
-            return null;
+            throw new ArithmeticException("Non posso invertire lo zero!");
         }
     }
 
@@ -186,4 +189,37 @@ public class Razionale implements Comparable {
         }
 
     }
+
+    @Override
+    public Aritmetica somma(Aritmetica elemento2) {
+        if (!(elemento2 instanceof Razionale)) {
+            throw new ClassCastException("Il metodo somma si aspetta un Razionale come parametro!");
+        }
+        return this.somma((Razionale) elemento2);
+    }
+
+    @Override
+    public Aritmetica sottrai(Aritmetica elemento2) {
+        if (!(elemento2 instanceof Razionale)) {
+            throw new ClassCastException("Il metodo sottrai si aspetta un Razionale come parametro!");
+        }
+        return this.sottrai((Razionale) elemento2);
+    }
+
+    @Override
+    public Aritmetica moltiplica(Aritmetica elemento2) {
+        if (!(elemento2 instanceof Razionale)) {
+            throw new ClassCastException("Il metodo moltiplica si aspetta un Razionale come parametro!");
+        }
+        return this.moltiplica((Razionale) elemento2);
+    }
+
+    @Override
+    public Aritmetica dividi(Aritmetica elemento2) {
+        if (!(elemento2 instanceof Razionale)) {
+            throw new ClassCastException("Il metodo dividi si aspetta un Razionale come parametro!");
+        }
+        return this.dividi((Razionale) elemento2);
+    }
+
 }

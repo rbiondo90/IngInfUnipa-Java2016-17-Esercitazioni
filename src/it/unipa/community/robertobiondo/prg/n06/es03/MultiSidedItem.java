@@ -6,7 +6,6 @@
 package it.unipa.community.robertobiondo.prg.n06.es03;
 
 import it.unipa.community.robertobiondo.prg.utilities.Utils;
-import java.util.Random;
 
 /**
  *
@@ -14,7 +13,6 @@ import java.util.Random;
  */
 public abstract class MultiSidedItem {
 
-    private static Random rand  = new Random();
     private final int SIDES_NUMBER;
     private final String[] SIDES_NAMES;
 
@@ -57,7 +55,7 @@ public abstract class MultiSidedItem {
     }
 
     private void draw(final int result) {
-        int rotations = 3 + rand.nextInt(7);
+        int rotations = Utils.randomIntInRange(3, 10);
         StringBuilder roll = new StringBuilder();
         for (int i = 1; i <= rotations; i++) {
             int rolledValue = this.roll();
@@ -68,7 +66,7 @@ public abstract class MultiSidedItem {
     }
 
     public int roll(boolean draw) {
-        int result = 1+ rand.nextInt(this.getSidesNumber());
+        int result = Utils.randomIntInRange(1, this.getSidesNumber());
         if (draw) {
             this.draw(result);
         }

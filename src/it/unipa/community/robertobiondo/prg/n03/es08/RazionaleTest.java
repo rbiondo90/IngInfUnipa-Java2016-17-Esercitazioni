@@ -23,5 +23,6 @@ public class RazionaleTest{
 		System.out.println(f1.toString() + " - " + f2.toString() + " = " + f1.sottrai(f2).toString());
 		System.out.println(f1.toString() + " * " + f2.toString() + " = " + f1.moltiplica(f2).toString());
 		System.out.println(f1.toString() + " / " + f2.toString() + " = " + f1.dividi(f2).toString());
+                System.out.println("f1 = " + f1 + " f2 = "+f2 + "f1.compareTo(f2) = "+ f1.compareTo(f2));
 	}
 }
