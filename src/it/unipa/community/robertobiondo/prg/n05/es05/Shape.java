@@ -9,7 +9,7 @@ package it.unipa.community.robertobiondo.prg.n05.es05;
  *
  * @author Bob
  */
-public abstract class Shape implements Comparable {
+public abstract class Shape implements Comparable<Shape> {
 
     private String color = "black";
     private boolean filled = false;
@@ -49,10 +49,7 @@ public abstract class Shape implements Comparable {
     }
 
     @Override
-    public int compareTo(Object shape) {
-        if (!(shape instanceof Shape)) {
-            throw new ClassCastException("Expecting a Shape object!");
-        }
+    public int compareTo(Shape shape) {
         double comparison = this.area() - ((Shape) shape).area();
         if (comparison > 0) {
             return 1;

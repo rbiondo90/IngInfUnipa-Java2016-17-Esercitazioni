@@ -16,7 +16,7 @@ public class Main {
     public static void main(String args[]) {
         Image image = new Image(6, 6);
         image.print();
-        ROI roi = new ROI(new Point2D(1, 0), new Point2D(6, 6));
+        ROI roi = new ROI(new Point2D(4, 4), new Point2D(6, 6));
         image.getROIImage(roi).print();
     }
 }

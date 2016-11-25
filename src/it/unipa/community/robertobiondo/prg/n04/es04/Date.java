@@ -6,7 +6,7 @@ import java.util.Calendar;
  *
  * @author Bob
  */
-public class Date implements Comparable {
+public class Date implements Comparable<Date> {
 
     private int giorno;
     private int mese;
@@ -288,10 +288,11 @@ public class Date implements Comparable {
     }
 
     @Override
-    public int compareTo(Object data) {
-        if (!(data instanceof Date)) {
-            throw new ClassCastException("A Date object expected!");
+    public int compareTo(Date date) {
+        if (date != null && this.getValidita() && date.getValidita()) {
+            return this.giorniDallAnnoZero() - date.giorniDallAnnoZero();
+        } else {
+            throw new NullPointerException();
         }
-        return this.giorniDallAnnoZero() - ((Date) data).giorniDallAnnoZero();
     }
 }

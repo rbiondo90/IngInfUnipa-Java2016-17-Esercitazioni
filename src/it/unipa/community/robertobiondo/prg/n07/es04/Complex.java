@@ -107,7 +107,7 @@ public class Complex implements AritmeticaComplex {
 
     @Override
     public Complex dividi(Complex elemento2) {
-        return this.moltiplica(((Complex) elemento2).inverso());
+        return this.moltiplica((elemento2.inverso()));
     }
 
 }

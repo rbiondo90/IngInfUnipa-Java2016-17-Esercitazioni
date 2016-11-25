@@ -1,6 +1,6 @@
 package it.unipa.community.robertobiondo.prg.n03.es08;
 
-public class Razionale implements Comparable {
+public class Razionale implements Comparable<Razionale> {
 
     private int numeratore, denominatore;
     private boolean validity = true;
@@ -169,21 +169,11 @@ public class Razionale implements Comparable {
     }
 
     @Override
-    public int compareTo(Object razionale) {
-        if (!(razionale instanceof Razionale)) {
-            throw new ClassCastException("Il metodo compareTo si aspetta in ingresso un oggetto Razionale!");
-        }
-        if (this.equals((Razionale) razionale)) {
-            return 0;
-        }
-        double compare = this.toDouble() - ((Razionale) razionale).toDouble();
-        if (compare > 0) {
-            return 1;
-        } else if (compare < 0) {
-            return -1;
+    public int compareTo(Razionale razionale) {
+        if (razionale != null) {
+            return this.getNumeratore() * razionale.getDenominatore() - this.getDenominatore() * razionale.getNumeratore();
         } else {
-            return 0;
+            throw new NullPointerException();
         }
-
     }
 }

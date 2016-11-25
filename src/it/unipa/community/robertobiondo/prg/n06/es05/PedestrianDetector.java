@@ -36,7 +36,7 @@ public class PedestrianDetector extends Detector {
     }
 
     public static void main(String args[]) {
-        Image image = new Image(2, 10);
+        Image image = new Image(8, 8);
         PedestrianDetector detector = new PedestrianDetector();
         image.print();
         image.getROIImage(detector.detect(image)).print();

@@ -97,15 +97,15 @@ public class Complex extends Numero {
     }
 
     @Override
-    public Numero somma(Numero elemento2) {
+    public Complex somma(Numero elemento2) {
         if (!(elemento2 instanceof Complex)) {
             throw new ClassCastException("Il metodo somma si aspetta un Complex come parametro!");
         }
-        return (Complex) (this.somma((Complex) elemento2));
+        return this.somma((Complex) elemento2);
     }
 
     @Override
-    public Numero sottrai(Numero elemento2) {
+    public Complex sottrai(Numero elemento2) {
         if (!(elemento2 instanceof Complex)) {
             throw new ClassCastException("Il metodo sottrai si aspetta un Complex come parametro!");
         }
@@ -113,7 +113,7 @@ public class Complex extends Numero {
     }
 
     @Override
-    public Numero moltiplica(Numero elemento2) {
+    public Complex moltiplica(Numero elemento2) {
         if (!(elemento2 instanceof Complex)) {
             throw new ClassCastException("Il metodo moltiplica si aspetta un Complex come parametro!");
         }
@@ -124,7 +124,7 @@ public class Complex extends Numero {
     }
 
     @Override
-    public Numero dividi(Numero elemento2) {
+    public Complex dividi(Numero elemento2) {
         if (!(elemento2 instanceof Complex)) {
             throw new ClassCastException("Il metodo dividi si aspetta un Complex come parametro!");
         }

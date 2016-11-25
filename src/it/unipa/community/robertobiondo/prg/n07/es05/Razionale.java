@@ -2,7 +2,7 @@ package it.unipa.community.robertobiondo.prg.n07.es05;
 
 import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
 
-public class Razionale extends Numero implements Comparable {
+public class Razionale extends Numero implements Comparable<Razionale> {
 
     private int numeratore, denominatore;
     private boolean validity = true;
@@ -172,34 +172,24 @@ public class Razionale extends Numero implements Comparable {
     }
 
     @Override
-    public int compareTo(Object razionale) {
-        if (!(razionale instanceof Razionale)) {
-            throw new ClassCastException("Il metodo compareTo si aspetta in ingresso un oggetto Razionale!");
-        }
-        if (this.equals((Razionale) razionale)) {
-            return 0;
-        }
-        double compare = this.toDouble() - ((Razionale) razionale).toDouble();
-        if (compare > 0) {
-            return 1;
-        } else if (compare < 0) {
-            return -1;
+    public int compareTo(Razionale razionale) {
+        if (razionale != null) {
+            return this.getNumeratore() * razionale.getDenominatore() - this.getDenominatore() * razionale.getNumeratore();
         } else {
-            return 0;
+            throw new NullPointerException();
         }
-
     }
 
     @Override
-    public Numero somma(Numero elemento2) {
+    public Razionale somma(Numero elemento2) {
         if (!(elemento2 instanceof Razionale)) {
             throw new ClassCastException("Il metodo somma si aspetta un Razionale come parametro!");
         }
-        return this.somma((Razionale) elemento2);
+        return this.somma((Razionale)elemento2);
     }
 
     @Override
-    public Numero sottrai(Numero elemento2) {
+    public Razionale sottrai(Numero elemento2) {
         if (!(elemento2 instanceof Razionale)) {
             throw new ClassCastException("Il metodo sottrai si aspetta un Razionale come parametro!");
         }
@@ -207,7 +197,7 @@ public class Razionale extends Numero implements Comparable {
     }
 
     @Override
-    public Numero moltiplica(Numero elemento2) {
+    public Razionale moltiplica(Numero elemento2) {
         if (!(elemento2 instanceof Razionale)) {
             throw new ClassCastException("Il metodo moltiplica si aspetta un Razionale come parametro!");
         }
@@ -215,7 +205,7 @@ public class Razionale extends Numero implements Comparable {
     }
 
     @Override
-    public Numero dividi(Numero elemento2) {
+    public Razionale dividi(Numero elemento2) {
         if (!(elemento2 instanceof Razionale)) {
             throw new ClassCastException("Il metodo dividi si aspetta un Razionale come parametro!");
         }

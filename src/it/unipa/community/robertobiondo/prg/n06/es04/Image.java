@@ -5,7 +5,6 @@
  */
 package it.unipa.community.robertobiondo.prg.n06.es04;
 
-import it.unipa.community.robertobiondo.prg.n05.es03.Point2D;
 import it.unipa.community.robertobiondo.prg.utilities.Utils;
 import java.util.Random;
 
