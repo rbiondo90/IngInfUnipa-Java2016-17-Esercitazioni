@@ -99,7 +99,7 @@ public class Complex extends Numero {
     @Override
     public Complex somma(Numero elemento2) {
         if (!(elemento2 instanceof Complex)) {
-            throw new ClassCastException("Il metodo somma si aspetta un Complex come parametro!");
+            throw new IllegalArgumentException("Il metodo somma si aspetta un Complex come parametro!");
         }
         return this.somma((Complex) elemento2);
     }
@@ -107,7 +107,7 @@ public class Complex extends Numero {
     @Override
     public Complex sottrai(Numero elemento2) {
         if (!(elemento2 instanceof Complex)) {
-            throw new ClassCastException("Il metodo sottrai si aspetta un Complex come parametro!");
+            throw new IllegalArgumentException("Il metodo sottrai si aspetta un Complex come parametro!");
         }
         return (this.sottrai((Complex) elemento2));
     }
@@ -115,7 +115,7 @@ public class Complex extends Numero {
     @Override
     public Complex moltiplica(Numero elemento2) {
         if (!(elemento2 instanceof Complex)) {
-            throw new ClassCastException("Il metodo moltiplica si aspetta un Complex come parametro!");
+            throw new IllegalArgumentException("Il metodo moltiplica si aspetta un Complex come parametro!");
         }
         Complex c = (Complex) elemento2;
         double parteRealeDelProdotto = this.getParteReale() * c.getParteReale() - this.getParteImmaginaria() * c.getParteImmaginaria();
@@ -126,7 +126,7 @@ public class Complex extends Numero {
     @Override
     public Complex dividi(Numero elemento2) {
         if (!(elemento2 instanceof Complex)) {
-            throw new ClassCastException("Il metodo dividi si aspetta un Complex come parametro!");
+            throw new IllegalArgumentException("Il metodo dividi si aspetta un Complex come parametro!");
         }
         return this.moltiplica(((Complex) elemento2).inverso());
     }

@@ -5,8 +5,9 @@ package it.unipa.community.robertobiondo.prg.utilities;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import it.unipa.community.robertobiondo.prg.n04.es04.Date;
+import it.unipa.community.robertobiondo.prg.n08.es04.Date;
 import it.unipa.community.robertobiondo.prg.n05.es01.Persona;
+import it.unipa.community.robertobiondo.prg.n08.es04.MyIllegalDateException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,36 +25,32 @@ public class MainUtils {
 
     /**
      * Acquires an integer from keyboard, with value between minimum and
-     * maximum. Note that is not necessary to pass first the minimum to the
-     * metod, as if minimum results smaller than maximum, they will be switched.
+     * maximum.
      *
      * @param minimum the minimum integer accepted
      * @param maximum the maximum integer accepted
      * @return the integer inserted by the user
      */
-    public static int integerFromKeyboard(int minimum, int maximum) {
+    public static int integerFromKeyboard(int minimum, int maximum) throws IllegalArgumentException {
         if (maximum < minimum) {
-            int tmp = minimum;
-            minimum = maximum;
-            maximum = tmp;
+            throw new IllegalArgumentException("Wrong range! Minimum must be smaller than maximum.");
         }
         int choice = 0;
+        boolean success = false;
         do {
-            if (!keyboard.hasNextInt()) {
-                keyboard.nextLine();
-                System.out.println("Inserire solo interi compresi tra " + minimum + " e " + maximum + ".");
-                continue;
-            } else {
+            try {
                 choice = keyboard.nextInt();
-                keyboard.nextLine();
                 if (choice >= minimum && choice <= maximum) {
-                    break;
-                } else {
-                    System.out.println("Valore non valido! Inserire solo interi compresi tra " + minimum + " e " + maximum + ".");
+                    success = true;
                 }
+            } catch (java.util.InputMismatchException exc) {
+                keyboard.nextLine();
             }
-
-        } while (true);
+            if (!success) {
+                System.out.println("Valore non valido! Inserire solo interi compresi tra " + minimum + " e " + maximum + ".");
+            }
+        } while (!success);
+        keyboard.nextLine();
         return choice;
     }
 
@@ -62,43 +59,38 @@ public class MainUtils {
      *
      * @return the integer inserted by the user
      */
-    public static int integerFromKeyboard() {
+    public static int integerFromKeyboard() throws IllegalArgumentException {
         return integerFromKeyboard(Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     /**
-     * Acquires a double from keyboard, with value between minimum and maximum.
-     * Note that is not necessary to pass first the minimum to the metod, as if
-     * minimum results smaller than maximum, they will be switched. Values have
-     * to be inserted as "integerpart,fractionarypart".
+     * Acquires a double from keyboard, with value between minimum and maximum..
      *
      * @param minimum the minimum double accepted
      * @param maximum the maximum double accepted
      * @return the double inserted by the user
      */
-    public static double doubleFromKeyboard(double minimum, double maximum) {
+    public static double doubleFromKeyboard(double minimum, double maximum) throws IllegalArgumentException {
         if (maximum < minimum) {
-            double tmp = minimum;
-            minimum = maximum;
-            maximum = tmp;
+            throw new IllegalArgumentException("Wrong range! Minimum must be smaller than maximum.");
         }
         double choice = 0;
+        boolean success = false;
         do {
-            if (!keyboard.hasNextDouble()) {
-                keyboard.nextLine();
-                System.out.println("Inserire solo numeri in virgola mobile compresi tra " + minimum + " e " + maximum + ".");
-                continue;
-            } else {
-                choice = keyboard.nextDouble();
-                keyboard.nextLine();
+            try {
+                String s = keyboard.next();
+                choice = Double.parseDouble(s);
                 if (choice >= minimum && choice <= maximum) {
-                    break;
-                } else {
-                    System.out.println("Valore non valido! Inserire solo numberi in virgola mobile compresi tra " + minimum + " e " + maximum + ".");
+                    success = true;
                 }
+            } catch (java.util.InputMismatchException | NumberFormatException exc) {
+                keyboard.nextLine();
             }
-
-        } while (true);
+            if (!success) {
+                System.out.println("Valore non valido! Inserire solo double compresi tra " + minimum + " e " + maximum + ".");
+            }
+        } while (!success);
+        keyboard.nextLine();
         return choice;
     }
 
@@ -108,7 +100,7 @@ public class MainUtils {
      *
      * @return the double inserted by the user
      */
-    public static double doubleFromKeyboard() {
+    public static double doubleFromKeyboard() throws IllegalArgumentException {
         return MainUtils.doubleFromKeyboard(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
     }
 
@@ -128,7 +120,10 @@ public class MainUtils {
      * @param description the menu's description that will be printed before it
      * @param choices the menu's choices that will be printed
      */
-    public static void printMenu(String description, String... choices) {
+    public static void printMenu(String description, String... choices) throws IllegalArgumentException {
+        if (choices.length == 0) {
+            throw new IllegalArgumentException("A menu must have at least one choice.");
+        }
         System.out.print("\n" + description + "\n");
         for (int i = 0; i < choices.length; i++) {
             System.out.print("\n" + (i + 1) + ") " + choices[i]);
@@ -161,6 +156,7 @@ public class MainUtils {
                 System.out.println("Stringa inserita non valida. Valori consentiti: " + listToString(fixedValues));
             }
         } while (true);
+        keyboard.nextLine();
         return s;
     }
 
@@ -209,8 +205,7 @@ public class MainUtils {
     /**
      * Acquires from keyboard a Date between the range of minDate and maxDate.
      * <p>
-     * If minDate is antecedend maxDate, the two will be switched. The user must
-     * input the Date in the format "DD/MM/YYYY".
+     * The user must input the Date in the format "DD/MM/YYYY".
      * <p>
      *
      * @param minDate the minimum Date accepted
@@ -220,12 +215,12 @@ public class MainUtils {
     public static Date dateFromKeyboard(Date minDate, Date maxDate) {
         if (minDate != null && maxDate != null) {
             if (minDate.anniPassati(maxDate) < 0) {
-                Date tmp = minDate.clone();
-                minDate = maxDate.clone();
-                maxDate = tmp.clone();
+                throw new IllegalArgumentException("Parameter minDate must come before maxDate");
+            } else if (minDate == null && maxDate == null) {
+                return MainUtils.dateFromKeyboard();
             }
         }
-        Date data = new Date();
+        Date data = MainUtils.dateFromKeyboard();
         String dataString;
         boolean correct = true;
         do {
@@ -233,7 +228,6 @@ public class MainUtils {
                 System.out.println("Errore! Inserire una data" + ((minDate != null) ? (" successiva al " + minDate) : "")
                         + ((minDate != null && maxDate != null) ? " e" : "") + ((maxDate != null) ? (" precedente il " + maxDate) : "") + ".");
             }
-            data = MainUtils.dateFromKeyboard();
             if (minDate != null) {
                 if (maxDate != null) {
                     correct = data.giorniPassati(minDate) <= 0 && data.giorniPassati(maxDate) >= 0;
@@ -281,21 +275,21 @@ public class MainUtils {
      * @return the date digited
      */
     public static Date dateFromKeyboard() {
-        Date data = new Date();
         boolean correct = false;
         String dataString;
+        Date date = null;
         do {
             dataString = keyboard.next();
-            if (dataString.split("/").length != 3) {
+            try {
+                date = new Date(dataString);
+                correct = true;
+            } catch (MyIllegalDateException exc) {
+                System.out.println(exc.getMessage());
+            } finally {
                 keyboard.nextLine();
-                System.out.println("Valore non valido! Inserire una data nel formato GG/MM/AAAA");
-            } else {
-                data = new Date(dataString);
-                keyboard.nextLine();
-                correct = data.getValidita();
             }
         } while (!correct);
-        return data;
+        return date;
     }
 
     /**
@@ -327,7 +321,7 @@ public class MainUtils {
         System.out.print("Cognome: ");
         String cognome = MainUtils.stringFromKeyboard();
         System.out.print("Data di nascita " + ((etaMinima != 0) ? "(almeno " + etaMinima + " anni, formato GG/MM/AAAA)" : "") + ":");
-        Date dataDinascita = MainUtils.dateFromKeyboard(etaMinima);
+        Date dataDiNascita = MainUtils.dateFromKeyboard(etaMinima);
         System.out.print("Codice fiscale (16 lettere): ");
         String codiceFiscale = MainUtils.stringFromKeyboard(16);
         System.out.print("Indirizzo: ");
@@ -336,7 +330,8 @@ public class MainUtils {
         String citta = MainUtils.stringFromKeyboard();
         System.out.print("Cap: ");
         String cap = MainUtils.stringFromKeyboard(5);
-        return new Persona(dataDinascita, nome, cognome, codiceFiscale, indirizzo, citta, cap);
+        return new Persona(new it.unipa.community.robertobiondo.prg.n04.es04.Date(dataDiNascita.getGiorno(), dataDiNascita.getMese(), dataDiNascita.getAnno()),
+                nome, cognome, codiceFiscale, indirizzo, citta, cap);
     }
 
     /**

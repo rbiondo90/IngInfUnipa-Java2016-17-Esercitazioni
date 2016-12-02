@@ -36,6 +36,7 @@ public class DiceRollerGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dice Roller");
+        setResizable(false);
 
         rollButton.setText("Roll!");
         rollButton.setAlignmentY(0.0F);

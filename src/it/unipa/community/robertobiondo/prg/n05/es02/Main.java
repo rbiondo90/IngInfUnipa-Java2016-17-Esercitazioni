@@ -102,7 +102,7 @@ public class Main {
     public static Professore professorFromKeyboard(Persona persona) {
         System.out.println("Inserire i dati del professor " + persona.getCognome() + " " + persona.getNome() + ": ");
         System.out.print("\nData di assunzione: ");
-        Date dataDiAssunzione = MainUtils.dateFromKeyboard(25);
+        Date dataDiAssunzione = new Date();
         System.out.print("Ruolo: ");
         String ruolo = MainUtils.stringFromKeyboard(Arrays.asList("professore associato", "professore ordinario", "ricercatore", "pa", "po", "r"));
         System.out.print("Dipartimento: ");
@@ -115,7 +115,7 @@ public class Main {
     public static Studente studentFromKeyboard(Persona persona) {
         System.out.println("Inserire i dati dello studente " + persona.getCognome() + " " + persona.getNome() + ": ");
         System.out.print("\nData di  iscrizione: ");
-        Date dataIscrizione = MainUtils.dateFromKeyboard(persona.getDataDiNascita().aggiungiAnni(18));
+        Date dataIscrizione = new Date();
         System.out.print("Corso di laurea: ");
         String corsoDiLaurea = MainUtils.stringFromKeyboard();
         System.out.print("Numero di matricola: ");

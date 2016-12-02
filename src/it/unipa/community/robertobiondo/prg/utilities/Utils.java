@@ -47,10 +47,19 @@ public class Utils {
             min = max;
             max = min;
         }
-        return (min + random.nextInt(max+1-min));
+        return (min + random.nextInt(max + 1 - min));
     }
 
     public static int randomInt(int max) {
         return randomIntInRange(0, max);
+    }
+
+    public static String capitalize(String s) {
+        if (s == null || s.length() == 0) {
+            return "";
+        } else if (s.length() == 1) {
+            return s.toUpperCase();
+        }
+        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
     }
 }

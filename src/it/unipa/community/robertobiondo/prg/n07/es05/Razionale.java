@@ -183,7 +183,7 @@ public class Razionale extends Numero implements Comparable<Razionale> {
     @Override
     public Razionale somma(Numero elemento2) {
         if (!(elemento2 instanceof Razionale)) {
-            throw new ClassCastException("Il metodo somma si aspetta un Razionale come parametro!");
+            throw new IllegalArgumentException("Il metodo somma si aspetta un Razionale come parametro!");
         }
         return this.somma((Razionale)elemento2);
     }
@@ -191,7 +191,7 @@ public class Razionale extends Numero implements Comparable<Razionale> {
     @Override
     public Razionale sottrai(Numero elemento2) {
         if (!(elemento2 instanceof Razionale)) {
-            throw new ClassCastException("Il metodo sottrai si aspetta un Razionale come parametro!");
+            throw new IllegalArgumentException("Il metodo sottrai si aspetta un Razionale come parametro!");
         }
         return this.sottrai((Razionale) elemento2);
     }
@@ -199,7 +199,7 @@ public class Razionale extends Numero implements Comparable<Razionale> {
     @Override
     public Razionale moltiplica(Numero elemento2) {
         if (!(elemento2 instanceof Razionale)) {
-            throw new ClassCastException("Il metodo moltiplica si aspetta un Razionale come parametro!");
+            throw new IllegalArgumentException("Il metodo moltiplica si aspetta un Razionale come parametro!");
         }
         return this.moltiplica((Razionale) elemento2);
     }
@@ -207,7 +207,7 @@ public class Razionale extends Numero implements Comparable<Razionale> {
     @Override
     public Razionale dividi(Numero elemento2) {
         if (!(elemento2 instanceof Razionale)) {
-            throw new ClassCastException("Il metodo dividi si aspetta un Razionale come parametro!");
+            throw new IllegalArgumentException("Il metodo dividi si aspetta un Razionale come parametro!");
         }
         return this.dividi((Razionale) elemento2);
     }

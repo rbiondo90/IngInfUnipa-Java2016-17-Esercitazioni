@@ -16,12 +16,13 @@ public class IntegerSet {
     private boolean a[];
     private final int SIZE;
 
-    public IntegerSet(final int SIZE) {
+    public IntegerSet(int SIZE) {
         try {
             a = new boolean[SIZE];
         } catch (NegativeArraySizeException exception) {
-            System.out.println(exception.getMessage() + "\nArray initialized with the default size of 100.");
+            System.out.println("Set size cannot be negative!\nSet initialized with the default size of 100.");
             a = new boolean[100];
+            SIZE = 100;
         } finally {
             this.SIZE = SIZE;
         }
