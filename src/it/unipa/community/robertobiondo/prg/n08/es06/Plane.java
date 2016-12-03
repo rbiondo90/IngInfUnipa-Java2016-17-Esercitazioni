@@ -6,9 +6,9 @@
 package it.unipa.community.robertobiondo.prg.n08.es06;
 
 import it.unipa.community.robertobiondo.prg.n05.es04.Point3D;
-import it.unipa.community.robertobiondo.prg.utilities.math.linearAlgebra.Matrix;
-import it.unipa.community.robertobiondo.prg.utilities.math.linearAlgebra.Vector;
-import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
+import robertobiondo.utilities.math.linearAlgebra.Matrix;
+import robertobiondo.utilities.math.linearAlgebra.Vector;
+import robertobiondo.utilities.math.MathUtils;
 
 /**
  *

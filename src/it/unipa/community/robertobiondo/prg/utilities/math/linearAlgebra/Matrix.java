@@ -1,4 +1,4 @@
-package it.unipa.community.robertobiondo.prg.utilities.math.linearAlgebra;
+package robertobiondo.utilities.math.linearAlgebra;
 
 import it.unipa.community.robertobiondo.prg.n05.es04.Rational;
 

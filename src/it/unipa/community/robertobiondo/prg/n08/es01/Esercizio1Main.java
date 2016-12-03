@@ -5,7 +5,7 @@
  */
 package it.unipa.community.robertobiondo.prg.n08.es01;
 
-import it.unipa.community.robertobiondo.prg.utilities.MainUtils;
+import robertobiondo.utilities.MainUtils;
 
 /**
  *

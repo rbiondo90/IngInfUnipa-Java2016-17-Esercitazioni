@@ -1,6 +1,6 @@
 package it.unipa.community.robertobiondo.prg.n05.es04;
 
-import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
+import robertobiondo.utilities.math.MathUtils;
 
 public class Rational extends Number{//Classe importata da miei progetti personali per utilità nell'esercizio
 	private long numerator, denominator;

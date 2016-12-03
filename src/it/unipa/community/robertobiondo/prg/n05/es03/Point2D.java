@@ -5,8 +5,8 @@
  */
 package it.unipa.community.robertobiondo.prg.n05.es03;
 
-import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
-import it.unipa.community.robertobiondo.prg.utilities.math.linearAlgebra.Vector;
+import robertobiondo.utilities.math.MathUtils;
+import robertobiondo.utilities.math.linearAlgebra.Vector;
 
 /**
  *

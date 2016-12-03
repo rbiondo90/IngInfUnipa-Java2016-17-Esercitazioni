@@ -6,7 +6,7 @@
 package it.unipa.community.robertobiondo.prg.n08.es05;
 
 import it.unipa.community.robertobiondo.prg.n05.es03.Point2D;
-import it.unipa.community.robertobiondo.prg.utilities.MainUtils;
+import robertobiondo.utilities.MainUtils;
 
 /**
  *

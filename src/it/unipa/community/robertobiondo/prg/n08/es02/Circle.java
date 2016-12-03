@@ -6,7 +6,7 @@
 package it.unipa.community.robertobiondo.prg.n08.es02;
 
 import it.unipa.community.robertobiondo.prg.n06.es06.Scalable;
-import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
+import robertobiondo.utilities.math.MathUtils;
 
 /**
  *

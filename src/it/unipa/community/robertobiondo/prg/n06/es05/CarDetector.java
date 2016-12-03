@@ -8,7 +8,7 @@ package it.unipa.community.robertobiondo.prg.n06.es05;
 import it.unipa.community.robertobiondo.prg.n05.es03.Point2D;
 import it.unipa.community.robertobiondo.prg.n06.es04.Image;
 import it.unipa.community.robertobiondo.prg.n06.es04.ROI;
-import it.unipa.community.robertobiondo.prg.utilities.Utils;
+import robertobiondo.utilities.Utils;
 
 /**
  *

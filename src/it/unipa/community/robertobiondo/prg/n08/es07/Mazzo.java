@@ -7,7 +7,7 @@ package it.unipa.community.robertobiondo.prg.n08.es07;
 
 import it.unipa.community.robertobiondo.prg.n08.es07.Carta.Seme;
 import it.unipa.community.robertobiondo.prg.n08.es07.Carta.ValoreCarta;
-import it.unipa.community.robertobiondo.prg.utilities.Utils;
+import robertobiondo.utilities.Utils;
 
 
 /**

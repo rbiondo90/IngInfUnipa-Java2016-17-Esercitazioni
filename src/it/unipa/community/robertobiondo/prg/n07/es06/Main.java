@@ -5,7 +5,7 @@
  */
 package it.unipa.community.robertobiondo.prg.n07.es06;
 
-import it.unipa.community.robertobiondo.prg.utilities.MainUtils;
+import robertobiondo.utilities.MainUtils;
 import java.util.ArrayList;
 import java.util.List;
 

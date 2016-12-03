@@ -1,6 +1,6 @@
 package it.unipa.community.robertobiondo.prg.n07.es04;
 
-import it.unipa.community.robertobiondo.prg.utilities.math.MathUtils;
+import robertobiondo.utilities.math.MathUtils;
 
 public class Razionale implements Comparable<Razionale>, AritmeticaRazionale {
 

@@ -5,7 +5,7 @@
  */
 package it.unipa.community.robertobiondo.prg.n06.es04;
 
-import it.unipa.community.robertobiondo.prg.utilities.Utils;
+import robertobiondo.utilities.Utils;
 import java.util.Random;
 
 /**

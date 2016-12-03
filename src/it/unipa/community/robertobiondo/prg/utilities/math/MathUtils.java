@@ -1,4 +1,4 @@
-package it.unipa.community.robertobiondo.prg.utilities.math;
+package robertobiondo.utilities.math;
 //Classe importata da una mia esercitazione personale
 
 import java.util.Arrays;

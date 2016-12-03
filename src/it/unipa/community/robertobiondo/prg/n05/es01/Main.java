@@ -5,7 +5,8 @@
  */
 package it.unipa.community.robertobiondo.prg.n05.es01;
 
-import it.unipa.community.robertobiondo.prg.utilities.MainUtils;
+import it.unipa.community.robertobiondo.prg.n08.es04.Date;
+import robertobiondo.utilities.MainUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,7 +147,7 @@ public class Main {
     }
 
     public static Abbonato acquireSubscriberFromKeyboard() {
-        Persona abbonato = MainUtils.personFromKeyboard(18);
+        Persona abbonato = personFromKeyboard(18);
         System.out.print("Inserire la percentuale di sconto a cui avrà diritto l'abbonato: ");
         int sconto = MainUtils.integerFromKeyboard(0, 80);
         return new Abbonato(abbonato, (byte) sconto);
@@ -206,12 +207,72 @@ public class Main {
     public static void useBonusBuy(AbbonatoPremium abbonatoPremium) {
         if (abbonatoPremium.getAcquistiBonus() == 0) {
             System.out.println("L'abbonato " + abbonatoPremium.getCognome() + " " + abbonatoPremium.getNome() + " non dispone di alcun acquisto bonus");
-        }
-        else {
-            System.out.print("Digitare il numero di acquisti bonus effettuati da registrare (disponibili "+abbonatoPremium.getAcquistiBonus() +"): ");
+        } else {
+            System.out.print("Digitare il numero di acquisti bonus effettuati da registrare (disponibili " + abbonatoPremium.getAcquistiBonus() + "): ");
             int acquisti = MainUtils.integerFromKeyboard(1, abbonatoPremium.getAcquistiBonus());
             abbonatoPremium.effettuaAcquistiBonus(acquisti);
         }
     }
 
+    /**
+     * Acquires from keyboard all the necessary data to build an Object of the
+     * class Persona (representing a Person's data).
+     * <p>
+     * The user will be prompted to insert:
+     * <p>
+     * Name - a String.<p>
+     * Surname - a String.<p>
+     * Birth Date - a Date distant from current date for not lesser of etaMinima
+     * in the format "DD/MM/YYYY"
+     * <p>
+     * Codice Fiscale - a String of 16 prints.<p>
+     * Address - a String.<p>
+     * City - a String.<p>
+     * Address code -a String of 5 prints.<p>
+     *
+     * @param etaMinima the minimum age of the person generated
+     * @return an Object of the class Persona with the data digited by the user
+     */
+    public static Persona personFromKeyboard(int etaMinima) {
+        if (etaMinima < 0) {
+            etaMinima = 0;
+        }
+        System.out.println("Inserire i dati della persona.");
+        System.out.print("\nNome: ");
+        String nome = MainUtils.stringFromKeyboard();
+        System.out.print("Cognome: ");
+        String cognome = MainUtils.stringFromKeyboard();
+        System.out.print("Data di nascita " + ((etaMinima != 0) ? "(almeno " + etaMinima + " anni, formato GG/MM/AAAA)" : "") + ":");
+        Date dataDiNascita = new Date();
+        System.out.print("Codice fiscale (16 lettere): ");
+        String codiceFiscale = MainUtils.stringFromKeyboard(16);
+        System.out.print("Indirizzo: ");
+        String indirizzo = MainUtils.stringFromKeyboard();
+        System.out.print("Città: ");
+        String citta = MainUtils.stringFromKeyboard();
+        System.out.print("Cap: ");
+        String cap = MainUtils.stringFromKeyboard(5);
+        return new Persona(new it.unipa.community.robertobiondo.prg.n04.es04.Date(dataDiNascita.getGiorno(), dataDiNascita.getMese(), dataDiNascita.getAnno()),
+                nome, cognome, codiceFiscale, indirizzo, citta, cap);
+    }
+
+    /**
+     * Acquires from keyboard all the necessary data to build an Object of the
+     * class Persona (representing a Person's data).
+     * <p>
+     * The user will be prompted to insert:
+     * <p>
+     * Name - a String.<p>
+     * Surname - a String.<p>
+     * Birth Date - a Date in the format "GG/DD/YYYY"
+     * .<p>
+     * Codice Fiscale - a String of 16 prints.<p>
+     * Address - a String.<p>
+     * City - a String.<p>
+     * Address code -a String of 5 prints.<p>
+     * @return an Object of the class Persona with the data digited by the user
+     */
+    public static Persona personFromKeyboard() {
+        return personFromKeyboard(0);
+    }
 }

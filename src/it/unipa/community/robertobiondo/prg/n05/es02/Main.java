@@ -5,8 +5,9 @@
  */
 package it.unipa.community.robertobiondo.prg.n05.es02;
 
-import it.unipa.community.robertobiondo.prg.utilities.MainUtils;
+import robertobiondo.utilities.MainUtils;
 import it.unipa.community.robertobiondo.prg.n04.es04.Date;
+import static it.unipa.community.robertobiondo.prg.n05.es01.Main.personFromKeyboard;
 import it.unipa.community.robertobiondo.prg.n05.es01.Persona;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +53,7 @@ public class Main {
 
     public static void recordCreation(List<Persona> persone) {
         int scelta;
-        Persona persona = MainUtils.personFromKeyboard(18);
+        Persona persona = personFromKeyboard(18);
         Main.printCreationMenu();
         scelta = MainUtils.integerFromKeyboard(1, 3);
         switch (scelta) {
