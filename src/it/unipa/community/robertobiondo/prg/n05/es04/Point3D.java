@@ -5,7 +5,7 @@
  */
 package it.unipa.community.robertobiondo.prg.n05.es04;
 
-import robertobiondo.utilities.math.linearAlgebra.Vector;
+import robertobiondo.utilities.math.linearalgebra.Vector;
 import it.unipa.community.robertobiondo.prg.n05.es03.Point2D;
 import robertobiondo.utilities.math.MathUtils;
 

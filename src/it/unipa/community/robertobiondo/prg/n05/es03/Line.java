@@ -6,7 +6,6 @@
 package it.unipa.community.robertobiondo.prg.n05.es03;
 
 import robertobiondo.utilities.math.MathUtils;
-import robertobiondo.utilities.math.linearAlgebra.Vector;
 
 /**
  *
