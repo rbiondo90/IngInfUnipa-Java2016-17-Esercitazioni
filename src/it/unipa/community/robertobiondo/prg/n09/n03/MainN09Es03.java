@@ -25,7 +25,7 @@ public class MainN09Es03 {
         printArrayList(listaInteri);
     }
     
-    public static void printArrayList(ArrayList arrayList){
+    public static void printArrayList(ArrayList<?> arrayList){
         Iterator iterator = arrayList.iterator();
         while(iterator.hasNext()){
             System.out.println(iterator.next());

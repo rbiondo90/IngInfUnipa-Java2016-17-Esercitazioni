@@ -29,8 +29,8 @@ public class MainN09Es04 {
         */
     }
 
-    public static void printShapeList(ArrayList<Shape> shapeList) {
-        Iterator<Shape> iterator = shapeList.iterator();
+    public static void printShapeList(ArrayList<? extends Shape> shapeList) {
+        Iterator<? extends Shape> iterator = shapeList.iterator();
         while (iterator.hasNext()) {
             iterator.next().draw();
         }
