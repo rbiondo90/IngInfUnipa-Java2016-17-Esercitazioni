@@ -8,46 +8,47 @@ package it.unipa.community.robertobiondo.prg.n10.es06;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  *
  * @author Roberto Biondo
  */
-public class Vector<T extends Number> implements Comparable<Vector<T>> {
+public class VectorInteger implements Comparable<VectorInteger> {
 
-    private ArrayList<T> vector;
+    private List<Integer> vector;
     private int dim;
 
-    public Vector(int dim) {
+    public VectorInteger(int dim) {
         this.setDim(dim);
         this.vector = new ArrayList<>(this.getDim());
         for (int i = 0; i < this.getDim(); i++) {
-            this.vector.add((T) new Integer(0));
+            this.vector.add(new Integer(0));
         }
     }
 
-    public Vector() {
+    public VectorInteger() {
         this(10);
     }
 
-    public Vector(T... elements) {
+    public VectorInteger(Integer... elements) {
         this(Arrays.asList(elements));
     }
 
-    public Vector(Collection<T> collection) {
+    public VectorInteger(Collection<Integer> collection) {
         this.setDim(collection.size());
         this.vector = new ArrayList<>();
         this.vector.addAll(collection);
     }
 
-    public void set(int position, T element) {
+    public void set(int position, Integer element) {
         if (position < 0 || position >= this.getDim()) {
             throw new IllegalArgumentException("Wrong index!");
         }
         this.vector.set(position, element);
     }
 
-    public T get(int position) {
+    public Integer get(int position) {
         if (position < 0 || position >= this.getDim()) {
             throw new IllegalArgumentException("Wrong index!");
         }
@@ -65,51 +66,47 @@ public class Vector<T extends Number> implements Comparable<Vector<T>> {
         return this.dim;
     }
 
-    public Vector add(Vector<T> v) {
+    public VectorInteger add(VectorInteger v) {
         if (this.getDim() != v.getDim()) {
             throw new IllegalArgumentException("Cannot sum vectors with different dimensions!");
         }
-        Vector sum = new Vector(this.getDim());
+        VectorInteger sum = new VectorInteger(this.getDim());
         for (int i = 0; i < this.getDim(); i++) {
-            sum.set(i, this.get(i).doubleValue() + v.get(i).doubleValue());
+            sum.set(i, this.get(i) + v.get(i));
         }
         return sum;
     }
 
-    public Vector realProduct(double d) {
-        Vector realProduct = new Vector(this.getDim());
+    public VectorInteger integerProduct(int d) {
+        VectorInteger realProduct = new VectorInteger(this.getDim());
         for (int i = 0; i < this.getDim(); i++) {
-            realProduct.set(i, this.get(i).doubleValue() * d);
+            realProduct.set(i, this.get(i) * d);
         }
         return realProduct;
     }
 
-    public Vector opposite() {
-        return this.realProduct(-1);
+    public VectorInteger opposite() {
+        return this.integerProduct(-1);
     }
 
-    public Vector subtract(Vector<T> v) {
+    public VectorInteger subtract(VectorInteger v) {
         return this.add(v.opposite());
     }
 
-    public double scalarProduct(Vector v) {
+    public double scalarProduct(VectorInteger v) {
         if (this.getDim() != v.getDim()) {
             throw new IllegalArgumentException("Cannot do scalar product of vectors"
                     + " with different sizes");
         }
         double scalarProduct = 0;
         for (int i = 0; i < this.getDim(); i++) {
-            scalarProduct += this.get(i).doubleValue() * v.get(i).doubleValue();
+            scalarProduct += this.get(i) * v.get(i);
         }
         return scalarProduct;
     }
 
     public double length() {
-        double squareSum = 0;
-        for (int i = 0; i < this.getDim(); i++) {
-            squareSum += Math.pow(this.get(i).doubleValue(), 2);
-        }
-        return Math.sqrt(squareSum);
+        return Math.sqrt(this.scalarProduct(this));
     }
 
     @Override
@@ -130,7 +127,7 @@ public class Vector<T extends Number> implements Comparable<Vector<T>> {
     }
 
     @Override
-    public int compareTo(Vector<T> v) {
+    public int compareTo(VectorInteger v) {
         double mod1 = this.length();
         double mod2 = v.length();
         if (mod1 > mod2) {
