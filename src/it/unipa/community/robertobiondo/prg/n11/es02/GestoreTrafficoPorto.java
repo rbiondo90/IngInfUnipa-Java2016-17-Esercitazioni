@@ -7,8 +7,6 @@ import java.util.InputMismatchException;
 
 public class GestoreTrafficoPorto {
 
-    private static BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
-
     public static void main(String args[]) {
         Porto porto = new Porto();
         System.out.println("Programma che simula la gestione delle navi presenti in un porto.");
@@ -82,7 +80,7 @@ public class GestoreTrafficoPorto {
         String s = null;
         boolean acquisita = false;
         do {
-            try {
+            try (BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in))){
                 s = tastiera.readLine();
                 acquisita = true;
             } catch (IOException exc) {

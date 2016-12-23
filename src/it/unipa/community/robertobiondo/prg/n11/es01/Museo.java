@@ -44,11 +44,11 @@ public class Museo {
             return false;
         }
 
-        return (this.opere.putIfAbsent(opera.getTitolo(), opera) == null) ? true : false;
+        return (this.opere.putIfAbsent(opera.getTitolo(), opera) == null);
     }
 
     public boolean rimuoviOpera(String titoloOpera) {
-        return (opere.remove(titoloOpera) != null) ? true : false;
+        return (opere.remove(titoloOpera) != null);
     }
 
     public OperaDArte ottieniOpera(String titoloOpera) {
