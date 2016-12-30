@@ -7,6 +7,8 @@ import java.util.InputMismatchException;
 
 public class GestioneMuseo {
 
+    static BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String args[]) throws IOException {
         System.out.println("Programma che simula la gestione delle opere d'arte di un museo.\n");
         Museo museo = generaMuseo();
@@ -142,8 +144,9 @@ public class GestioneMuseo {
     private static String acquisisciStringa() {
         String s = null;
         boolean acquisita = false;
+
         do {
-            try (BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in))) {
+            try {
                 s = tastiera.readLine();
                 acquisita = true;
             } catch (IOException exc) {
